@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SD 통증재활의학과 | 송파 가락동 재활의학과</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--b:#00205B;--g:#C69214;--w:#FFF;--s:#F8F6F2;--text:#2D2D2D}
+*{margin:0;padding:0;box-sizing:border-box; scroll-behavior: smooth;}
+body{font-family:'Noto Sans KR',sans-serif;color:var(--text);line-height:1.7;background:#fff;word-break:keep-all}
+
+/* 상단 메뉴 */
+nav{position:fixed;top:0;width:100%;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;z-index:1000;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid #eee}
+.logo{color:var(--b);font-weight:700;font-size:22px;text-decoration:none}
+.nav-links{list-style:none; display:flex; gap:25px;}
+.nav-links a{text-decoration:none; color:var(--text); font-weight:500; font-size:15px; transition:0.3s;}
+.nav-links a:hover{color:var(--g);}
+
+/* 메인 화면 */
+.hero{height:65vh;background:linear-gradient(135deg, #00205B 0%, #00408B 100%);display:flex;align-items:center;justify-content:center;color:var(--w);text-align:center;padding-top:80px}
+.snu-mark-area{width:150px; height:150px; margin:0 auto 25px;} 
+.snu-mark-area img{width:100%; height:auto; filter:brightness(0) invert(1)}
+.hero h1{font-size:45px; margin-bottom:15px; font-weight:700;}
+
+section{padding:100px 5%; max-width:1200px; margin:0 auto}
+.title-wrap{text-align:center; margin-bottom:60px}
+.bar{width:50px; height:3px; background:var(--g); margin:15px auto}
+
+/* 의료진 소개 */
+.doc-card{display:flex; background:var(--s); border-radius:40px; overflow:hidden; box-shadow:0 20px 40px rgba(0,0,0,0.05)}
+.doc-img{width:40%; background:url('doctor.png') center/cover no-repeat; min-height:500px; background-color:#d1d1d1}
+.doc-info{padding:60px; flex:1}
+.doc-name{font-size:32px; font-weight:700;}
+.doc-list{list-style:none; margin-top:20px}
+.doc-list li{margin-bottom:12px; font-size:16px; position:relative; padding-left:20px}
+.doc-list li::before{content:''; position:absolute; left:0; top:12px; width:8px; height:1px; background:var(--g)}
+
+/* 치료 프로그램 그리드 */
+.treat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px}
+.treat-item{background:#fff; border-radius:25px; overflow:hidden; border:1px solid #f0f0f0; transition:0.4s}
+.treat-img{height:220px; background-size:cover; background-position:center; background-color:#eee;}
+.treat-text{padding:30px}
+.treat-text h4{font-size:20px; color:var(--b); margin-bottom:12px; font-family:'Playfair Display', serif;}
+
+/* 오시는 길 */
+.location-container{text-align:center; background:#fcfcfc; padding:40px; border-radius:40px; border:1px solid #eee;}
+.map-box{width:100%; height:450px; background:url('map.png') center/cover no-repeat; background-color:#e0e0e0; border-radius:20px; margin-bottom:30px; border:1px solid #ddd;}
+.location-info{font-size:20px;}
+.location-info b{color:var(--b); font-size:26px; display:block; margin-bottom:10px;}
+
+.contact-cta{background:var(--b); color:var(--w); text-align:center; padding:80px 30px; border-radius:50px;}
+.phone-num{font-size:42px; font-weight:700; color:var(--w); text-decoration:none; display:block; margin:25px 0}
+footer{text-align:center; padding:50px; background:#f9f9f9; color:#999; font-size:13px}
+
+@media(max-width:768px){ .nav-links{display:none;} .doc-card{flex-direction:column} .doc-img{width:100%; height:400px} }
+</style>
+</head>
+<body>
+
+<nav>
+    <a href="#" class="logo">SD REHAB</a>
+    <ul class="nav-links">
+        <li><a href="#about">의료진 소개</a></li>
+        <li><a href="#treat">치료 프로그램</a></li>
+        <li><a href="#location">오시는 길</a></li>
+    </ul>
+</nav>
+
+<div class="hero">
+    <div class="hero-content">
+        <div class="snu-mark-area"><img src="snu_logo.png" alt="SNU"></div>
+        <p style="letter-spacing:3px;">SEOUL NATIONAL UNIVERSITY</p>
+        <h1>SD 통증재활의학과의원</h1>
+        <p>본질에 집중하는 전문의 진료</p>
+    </div>
+</div>
+
+<section id="about">
+    <div class="title-wrap"><h2>의료진 소개</h2><div class="bar"></div></div>
+    <div class="doc-card">
+        <div class="doc-img"></div>
+        <div class="doc-info">
+            <h3 class="doc-name">김동규 <span style="font-size:18px;font-weight:400;color:#888;">대표원장</span></h3>
+            <p style="color:var(--g);font-weight:700; margin-bottom:20px;">서울대학교 의과대학 졸업 | 재활의학과 전문의</p>
+            <ul class="doc-list">
+                <li>서울아산병원 재활의학과 전문의 / 전임의</li>
+                <li>부경대학교 의학 · 의공학 박사</li>
+                <li>고신대학교 의과대학 조교수 역임</li>
+                <li>건국대학교 재활의학과 부교수 / 과장 / 기획실장 역임</li>
+                <li>UCSD Physiology 연수 (San Diego, CA, USA)</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="treat" style="background:#fafafa">
+    <div class="title-wrap"><h2>치료 프로그램</h2><div class="bar"></div></div>
+    <div class="treat-grid">
+        <div class="treat-item"><div class="treat-img" style="background-image:url('https://images.unsplash.com/photo-1579152123611-0a370e88248c?auto=format&fit=crop&q=80&w=800')"></div><div class="treat-text"><h4>Injection Therapy</h4><p>통증 부위에 직접 약물을 주입하여 염증을 제거하는 주사치료입니다.</p></div></div>
+        <div class="treat-item"><div class="treat-img" style="background-image:url('https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800')"></div><div class="treat-text"><h4>Ultrasound-Guided Injection</h4><p>실시간 초음파 확인을 통해 정확하고 안전하게 시술합니다.</p></div></div>
+        <div class="treat-item"><div class="treat-img" style="background-image:url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800')"></div><div class="treat-text"><h4>C-arm Guided Injection</h4><p>C-arm 장비로 척추 등 심부 병변을 정밀하게 치료합니다.</p></div></div>
+        <div class="treat-item"><div class="treat-img" style="background-image:url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800')"></div><div class="treat-text"><h4>ESWT</h4><p>체외충격파를 이용해 조직 재생과 혈류 개선을 돕습니다.</p></div></div>
+        <div class="treat-item"><div class="treat-img" style="background-image:url('https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800')"></div><div class="treat-text"><h4>Mesotherapy</h4><p>최소량의 약물로 최대 효과를 내는 특수 주사 요법입니다.</p></div></div>
+        <div class="treat-item"><div class="treat-img" style="background-image:url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800')"></div><div class="treat-text"><h4>Manual Therapy</h4><p>전문 치료사가 직접 손으로 근육과 관절을 교정합니다.</p></div></div>
+        <div class="treat-item"><div class="treat-img" style="background-image:url('https://images.unsplash.com/photo-1603398938378-e54eec446386?auto=format&fit=crop&q=80&w=800')"></div><div class="treat-text"><h4>IV Therapy</h4><p>개인 맞춤형 영양 수액으로 피로 회복과 면역을 강화합니다.</p></div></div>
+    </div>
+</section>
+
+<section id="location">
+    <div class="title-wrap"><h2>오시는 길</h2><div class="bar"></div></div>
+    <div class="location-container">
+        <div class="map-box"></div>
+        <div class="location-info">
+            <p><b>경찰병원역 4번 출구 앞</b></p>
+            <p>서울특별시 송파구 가락동 123-7 (8층)</p>
+        </div>
+    </div>
+</section>
+
+<section><div class="contact-cta">
+    <h3>진료 예약 및 상담</h3>
+    <a href="tel:02-123-4567" class="phone-num">02.123.4567</a>
+</div></section>
+
+<footer><p><b>SD 통증재활의학과의원</b><br>© 2026 SD Rehabilitation Medicine. All Rights Reserved.</p></footer>
+</body>
+</html>
