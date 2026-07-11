@@ -1,127 +1,335 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>SD 통증재활의학과 | 송파 가락동 재활의학과</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-<style>
-:root{--b:#00205B;--g:#C69214;--w:#FFF;--s:#F8F6F2;--text:#2D2D2D}
-*{margin:0;padding:0;box-sizing:border-box; scroll-behavior: smooth;}
-body{font-family:'Noto Sans KR',sans-serif;color:var(--text);line-height:1.7;background:#fff;word-break:keep-all}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>SD 통증재활의학과 | 송파 가락동 재활전문의</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <style>
+        :root { --b: #00205B; --g: #C69214; --w: #FFF; --s: #F8F6F2; --text: #2D2D2D; --naver: #00C73C; --nav-h: 60px; }
+        *{margin:0;padding:0;box-sizing:border-box; scroll-behavior: smooth;}
+        body{font-family:'Noto Sans KR',sans-serif;color:var(--text);line-height:1.6;background:#fff;word-break:keep-all; -webkit-text-size-adjust: none;}
 
-/* 상단 메뉴 */
-nav{position:fixed;top:0;width:100%;padding:15px 5%;display:flex;justify-content:space-between;align-items:center;z-index:1000;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid #eee}
-.logo{color:var(--b);font-weight:700;font-size:22px;text-decoration:none}
-.nav-links{list-style:none; display:flex; gap:25px;}
-.nav-links a{text-decoration:none; color:var(--text); font-weight:500; font-size:15px; transition:0.3s;}
-.nav-links a:hover{color:var(--g);}
+        /* [NAV] */
+        nav{position:fixed;top:0;width:100%;padding:0 3%;height:var(--nav-h);display:flex;justify-content:space-between;align-items:center;z-index:1000;background:rgba(255,255,255,0.98);backdrop-filter:blur(10px);border-bottom:1px solid #eee}
+        .logo{color:var(--b);font-weight:700;font-size:16px;text-decoration:none;}
+        .nav-links{list-style:none; display:flex; gap:8px;}
+        .nav-links a{text-decoration:none; color:var(--text); font-weight:500; font-size:12px; padding: 5px 2px;}
 
-/* 메인 화면 */
-.hero{height:65vh;background:linear-gradient(135deg, #00205B 0%, #00408B 100%);display:flex;align-items:center;justify-content:center;color:var(--w);text-align:center;padding-top:80px}
-.snu-mark-area{width:150px; height:150px; margin:0 auto 25px;} 
-.snu-mark-area img{width:100%; height:auto; filter:brightness(0) invert(1)}
-.hero h1{font-size:45px; margin-bottom:15px; font-weight:700;}
+        /* [OFFSET] */
+        #about, #treat, #blog, #info-location { scroll-margin-top: calc(var(--nav-h) + 20px); }
 
-section{padding:100px 5%; max-width:1200px; margin:0 auto}
-.title-wrap{text-align:center; margin-bottom:60px}
-.bar{width:50px; height:3px; background:var(--g); margin:15px auto}
+        /* [HERO] */
+        .hero{height:45vh; min-height:350px; background:linear-gradient(135deg, #001A4B 0%, #00337C 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--w);text-align:center;padding-top:var(--nav-h);}
+        .snu-logo { width: 70px; margin-bottom: 15px; filter: brightness(0) invert(1); }
+        .hero h1{font-size:26px; font-weight:700; margin-bottom: 8px;}
+        .hero p { font-size: 14px; opacity: 0.9; font-family: 'Playfair Display', serif; font-style: italic;}
 
-/* 의료진 소개 */
-.doc-card{display:flex; background:var(--s); border-radius:40px; overflow:hidden; box-shadow:0 20px 40px rgba(0,0,0,0.05)}
-.doc-img{width:40%; background:url('doctor.png') center/cover no-repeat; min-height:500px; background-color:#d1d1d1}
-.doc-info{padding:60px; flex:1}
-.doc-name{font-size:32px; font-weight:700;}
-.doc-list{list-style:none; margin-top:20px}
-.doc-list li{margin-bottom:12px; font-size:16px; position:relative; padding-left:20px}
-.doc-list li::before{content:''; position:absolute; left:0; top:12px; width:8px; height:1px; background:var(--g)}
+        section{padding:60px 20px; max-width:1200px; margin:0 auto}
+        .title-wrap{text-align:center; margin-bottom:40px}
+        .title-wrap h2{font-size:24px; color:var(--b); font-weight:700;}
+        .bar{width:30px; height:2px; background:var(--g); margin:12px auto}
 
-/* 치료 프로그램 그리드 */
-.treat-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px}
-.treat-item{background:#fff; border-radius:25px; overflow:hidden; border:1px solid #f0f0f0; transition:0.4s}
-.treat-img{height:220px; background-size:cover; background-position:center; background-color:#eee;}
-.treat-text{padding:30px}
-.treat-text h4{font-size:20px; color:var(--b); margin-bottom:12px; font-family:'Playfair Display', serif;}
+        /* [의료진] */
+        .doc-card { display: flex; flex-direction: column; background: var(--s); border-radius: 25px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.07); }
+        .doc-img { width: 100%; height: 400px; background: #e1e1e1 url('doctor.png') center top no-repeat; background-size: cover; }
+        .doc-info { padding: 40px 25px; }
+        .doc-info h3 { font-size: 26px; color: var(--b); margin-bottom: 5px; }
+        .doc-info .spec { color: var(--g); font-weight: 700; font-size: 16px; margin-bottom: 25px; display: block; }
+        .doc-list li { margin-bottom: 10px; font-size: 14.5px; padding-left: 18px; position: relative; list-style: none; color: #444; }
+        .doc-list li::before { content: ''; position: absolute; left: 0; top: 11px; width: 8px; height: 1px; background: var(--g); }
 
-/* 오시는 길 */
-.location-container{text-align:center; background:#fcfcfc; padding:40px; border-radius:40px; border:1px solid #eee;}
-.map-box{width:100%; height:450px; background:url('map.png') center/cover no-repeat; background-color:#e0e0e0; border-radius:20px; margin-bottom:30px; border:1px solid #ddd;}
-.location-info{font-size:20px;}
-.location-info b{color:var(--b); font-size:26px; display:block; margin-bottom:10px;}
+        /* [치료 프로그램 - 1단 아코디언] */
+        .treat-accordion { display: flex; flex-direction: column; gap: 15px; }
+        .cat-item { background: #fff; border: 1px solid #eee; border-radius: 12px; overflow: hidden; transition: all 0.3s ease; }
+        .cat-header { padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: #fff; transition: 0.3s; }
+        .cat-header:hover { background: var(--s); }
+        .cat-header h3 { font-size: 18px; color: var(--b); font-weight: 700; }
+        .cat-header .icon { font-size: 20px; color: var(--g); transition: transform 0.3s; }
+        
+        .cat-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out, padding 0.3s ease; background: #fcfcfc; }
+        .cat-item.active .cat-content { max-height: 2500px; padding: 10px 0 25px 0; }
+        .cat-item.active .icon { transform: rotate(45deg); }
+        .cat-item.active .cat-header { border-bottom: 1px solid #f0f0f0; }
 
-.contact-cta{background:var(--b); color:var(--w); text-align:center; padding:80px 30px; border-radius:50px;}
-.phone-num{font-size:42px; font-weight:700; color:var(--w); text-decoration:none; display:block; margin:25px 0}
-footer{text-align:center; padding:50px; background:#f9f9f9; color:#999; font-size:13px}
+        /* [치료 프로그램 - 2단 세부 아코디언] */
+        .sub-accordion { display: flex; flex-direction: column; }
+        .sub-item { border-bottom: 1px solid #eee; }
+        .sub-item:last-child { border-bottom: none; }
+        .sub-header { padding: 15px 25px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.3s; background: transparent; }
+        .sub-header:hover { background: #f9f9f9; }
+        .sub-header-text { font-size: 15px; color: #444; font-weight: 500; display: flex; align-items: center; }
+        .sub-header-text::before { content: "•"; color: var(--g); font-weight: bold; margin-right: 8px; font-size: 18px; }
+        .sub-icon { font-size: 12px; color: #aaa; transition: transform 0.3s; }
+        
+        .sub-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease, margin 0.3s ease; background: #fff; border-radius: 12px; margin: 0 25px; }
+        .sub-item.active .sub-content { max-height: 800px; padding: 20px; margin-bottom: 15px; border: 1px solid #eaeaea; box-shadow: 0 5px 15px rgba(0,0,0,0.02); }
+        .sub-item.active .sub-header-text { color: var(--b); font-weight: 700; }
+        .sub-item.active .sub-icon { transform: rotate(180deg); color: var(--b); }
 
-@media(max-width:768px){ .nav-links{display:none;} .doc-card{flex-direction:column} .doc-img{width:100%; height:400px} }
-</style>
+        .detail-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; background-color: #f1f1f1; display: block; }
+        .detail-text { font-size: 14px; color: #555; line-height: 1.6; word-break: keep-all; }
+
+        /* [블로그] */
+        .blog-list { display: flex; flex-direction: column; gap: 30px; }
+        .blog-post { text-decoration: none; color: inherit; display: block; padding-bottom: 25px; border-bottom: 1px solid #eee; }
+        .blog-post .category { font-size: 12px; color: var(--g); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block; }
+        .blog-post h3 { font-size: 20px; color: var(--b); margin-bottom: 12px; font-weight: 700; line-height: 1.4; }
+        .blog-post p { font-size: 14.5px; color: #666; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+        /* [진료/위치] */
+        .info-location-wrapper { display: flex; flex-direction: column; gap: 30px; }
+        .info-box { background: var(--s); padding: 35px 25px; border-radius: 20px; border: 1px solid #e1d8c1; }
+        .info-box b { font-size: 22px; color: var(--b); display: block; margin-bottom: 20px; }
+        .time-table { border-top: 1px solid rgba(0,0,0,0.05); padding-top: 20px; }
+        .time-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 15px; }
+        .tel { font-size: 28px; color: var(--b); font-weight: 700; text-decoration: none; display: block; margin-top: 15px; text-align: center;}
+        
+        .map-wrapper { display: flex; flex-direction: column; gap: 15px; }
+        .map-desc { background: #fff; padding: 20px; border-radius: 15px; border: 1px solid #eee; }
+        .map-desc h4 { color: var(--b); font-size: 16px; margin-bottom: 8px; }
+        .map-desc p { font-size: 14px; color: #666; line-height: 1.5; }
+        .nav-button { display: block; padding: 18px; background: var(--b); color: #fff; text-decoration: none; border-radius: 12px; font-weight: 700; text-align: center; }
+
+        footer { text-align: center; padding: 50px 20px; background: #00153D; color: rgba(255,255,255,0.4); font-size: 12px; }
+
+        @media(min-width: 1024px) {
+            .nav-links { gap: 25px; } .nav-links a { font-size: 15px; }
+            .doc-card { flex-direction: row; } .doc-img { width: 40%; height: auto; }
+            .info-location-wrapper { flex-direction: row; } .info-box, .map-wrapper { flex: 1; }
+        }
+    </style>
 </head>
 <body>
 
 <nav>
-    <a href="#" class="logo">SD REHAB</a>
+    <a href="#" class="logo">SD 통증재활의학과</a>
     <ul class="nav-links">
-        <li><a href="#about">의료진 소개</a></li>
-        <li><a href="#treat">치료 프로그램</a></li>
-        <li><a href="#location">오시는 길</a></li>
+        <li><a href="#about">의료진</a></li>
+        <li><a href="#treat">치료</a></li>
+        <li><a href="#blog">이야기</a></li>
+        <li><a href="#info-location">진료/위치</a></li>
     </ul>
 </nav>
 
-<div class="hero">
-    <div class="hero-content">
-        <div class="snu-mark-area"><img src="snu_logo.png" alt="SNU"></div>
-        <p style="letter-spacing:3px;">SEOUL NATIONAL UNIVERSITY</p>
-        <h1>SD 통증재활의학과의원</h1>
-        <p>본질에 집중하는 전문의 진료</p>
-    </div>
-</div>
+<header class="hero">
+    <img src="snu_logo.png" alt="서울대" class="snu-logo">
+    <h1>SD 통증재활의학과</h1>
+    <p>Rehabilitation Medical Treatment</p>
+</header>
 
-<section id="about">
-    <div class="title-wrap"><h2>의료진 소개</h2><div class="bar"></div></div>
-    <div class="doc-card">
-        <div class="doc-img"></div>
-        <div class="doc-info">
-            <h3 class="doc-name">김동규 <span style="font-size:18px;font-weight:400;color:#888;">대표원장</span></h3>
-            <p style="color:var(--g);font-weight:700; margin-bottom:20px;">서울대학교 의과대학 졸업 | 재활의학과 전문의</p>
-            <ul class="doc-list">
-                <li>서울아산병원 재활의학과 전문의 / 전임의</li>
-                <li>부경대학교 의학 · 의공학 박사</li>
-                <li>고신대학교 의과대학 조교수 역임</li>
-                <li>건국대학교 재활의학과 부교수 / 과장 / 기획실장 역임</li>
-                <li>UCSD Physiology 연수 (San Diego, CA, USA)</li>
-            </ul>
+<main>
+    <section id="about">
+        <div class="title-wrap"><h2>의료진 소개</h2><div class="bar"></div></div>
+        <div class="doc-card">
+            <div class="doc-img"></div> 
+            <div class="doc-info">
+                <h3>김동규 대표원장</h3>
+                <span class="spec">재활의학과 전문의</span>
+                <ul class="doc-list">
+                    <li>서울대학교 의과대학 졸업</li>
+                    <li>아산병원 재활의학 전문의</li>
+                    <li>아산병원 전임의</li>
+                    <li>(전) 부경대학교 의학, 의공학 박사</li>
+                    <li>(전) 고신대학교 조교수</li>
+                    <li>(전) 충주 건국대학교 재활의학과 부교수, 과장, 기획실장</li>
+                    <li>UCSD physiology. San Diego. CA . USA 연수</li>
+                </ul>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="treat" style="background:#fafafa">
-    <div class="title-wrap"><h2>치료 프로그램</h2><div class="bar"></div></div>
-    <div class="treat-grid">
-        <div class="treat-item"><div class="treat-img" style="background-image:url('https://images.unsplash.com/photo-1579152123611-0a370e88248c?auto=format&fit=crop&q=80&w=800')"></div><div class="treat-text"><h4>Injection Therapy</h4><p>통증 부위에 직접 약물을 주입하여 염증을 제거하는 주사치료입니다.</p></div></div>
-        <div class="treat-item"><div class="treat-img" style="background-image:url('https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800')"></div><div class="treat-text"><h4>Ultrasound-Guided Injection</h4><p>실시간 초음파 확인을 통해 정확하고 안전하게 시술합니다.</p></div></div>
-        <div class="treat-item"><div class="treat-img" style="background-image:url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=800')"></div><div class="treat-text"><h4>C-arm Guided Injection</h4><p>C-arm 장비로 척추 등 심부 병변을 정밀하게 치료합니다.</p></div></div>
-        <div class="treat-item"><div class="treat-img" style="background-image:url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=800')"></div><div class="treat-text"><h4>ESWT</h4><p>체외충격파를 이용해 조직 재생과 혈류 개선을 돕습니다.</p></div></div>
-        <div class="treat-item"><div class="treat-img" style="background-image:url('https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=800')"></div><div class="treat-text"><h4>Mesotherapy</h4><p>최소량의 약물로 최대 효과를 내는 특수 주사 요법입니다.</p></div></div>
-        <div class="treat-item"><div class="treat-img" style="background-image:url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800')"></div><div class="treat-text"><h4>Manual Therapy</h4><p>전문 치료사가 직접 손으로 근육과 관절을 교정합니다.</p></div></div>
-        <div class="treat-item"><div class="treat-img" style="background-image:url('https://images.unsplash.com/photo-1603398938378-e54eec446386?auto=format&fit=crop&q=80&w=800')"></div><div class="treat-text"><h4>IV Therapy</h4><p>개인 맞춤형 영양 수액으로 피로 회복과 면역을 강화합니다.</p></div></div>
-    </div>
-</section>
+    <section id="treat">
+        <div class="title-wrap"><h2>치료 프로그램</h2><div class="bar"></div></div>
+        <div class="treat-accordion">
+            
+            <div class="cat-item">
+                <div class="cat-header" onclick="toggleMainAccordion(this)">
+                    <h3>통증치료</h3><span class="icon">+</span>
+                </div>
+                <div class="cat-content">
+                    <div class="sub-accordion">
+                        <div class="sub-item">
+                            <div class="sub-header" onclick="toggleSubAccordion(this)">
+                                <span class="sub-header-text">C-arm 주사</span><span class="sub-icon">▼</span>
+                            </div>
+                            <div class="sub-content">
+                                <img src="c_arm.jpg" alt="C-arm 주사" class="detail-img">
+                                <p class="detail-text">고성능 영상 장비(C-arm)를 사용하여 척추 신경절까지 미세하게 관찰하며 시술을 진행합니다. 심부 통증을 원인부터 해결합니다.</p>
+                            </div>
+                        </div>
+                        <div class="sub-item">
+                            <div class="sub-header" onclick="toggleSubAccordion(this)">
+                                <span class="sub-header-text">초음파 가이드하 주사치료</span><span class="sub-icon">▼</span>
+                            </div>
+                            <div class="sub-content">
+                                <img src="ultrasound.jpg" alt="초음파 주사" class="detail-img">
+                                <p class="detail-text">실시간 초음파 영상을 통해 신경과 인대를 직접 확인하며 병변 부위에 약물을 정확히 주입합니다.</p>
+                            </div>
+                        </div>
+                        <div class="sub-item">
+                            <div class="sub-header" onclick="toggleSubAccordion(this)">
+                                <span class="sub-header-text">Mesotherapy</span><span class="sub-icon">▼</span>
+                            </div>
+                            <div class="sub-content">
+                                <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=500" alt="Mesotherapy" class="detail-img">
+                                <p class="detail-text">소량의 치료 약물을 피부 진피층에 직접 주입하여 염증을 개선하고 통증을 제어합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<section id="location">
-    <div class="title-wrap"><h2>오시는 길</h2><div class="bar"></div></div>
-    <div class="location-container">
-        <div class="map-box"></div>
-        <div class="location-info">
-            <p><b>경찰병원역 4번 출구 앞</b></p>
-            <p>서울특별시 송파구 가락동 123-7 (8층)</p>
+            <div class="cat-item">
+                <div class="cat-header" onclick="toggleMainAccordion(this)">
+                    <h3>재활치료</h3><span class="icon">+</span>
+                </div>
+                <div class="cat-content">
+                    <div class="sub-accordion">
+                        <div class="sub-item">
+                            <div class="sub-header" onclick="toggleSubAccordion(this)">
+                                <span class="sub-header-text">도수치료</span><span class="sub-icon">▼</span>
+                            </div>
+                            <div class="sub-content">
+                                <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=500" alt="도수치료" class="detail-img">
+                                <p class="detail-text">숙련된 전문 치료사가 손을 이용해 척추와 관절의 정렬을 바로잡고 근육의 긴장을 해소합니다.</p>
+                            </div>
+                        </div>
+                        <div class="sub-item">
+                            <div class="sub-header" onclick="toggleSubAccordion(this)">
+                                <span class="sub-header-text">체외충격파치료</span><span class="sub-icon">▼</span>
+                            </div>
+                            <div class="sub-content">
+                                <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=500" alt="체외충격파치료" class="detail-img">
+                                <p class="detail-text">고에너지 충격파를 통증 부위에 집중시켜 만성 염증을 제거하고 손상된 조직의 재생을 돕습니다.</p>
+                            </div>
+                        </div>
+                        <div class="sub-item">
+                            <div class="sub-header" onclick="toggleSubAccordion(this)">
+                                <span class="sub-header-text">물리치료</span><span class="sub-icon">▼</span>
+                            </div>
+                            <div class="sub-content">
+                                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=500" alt="물리치료" class="detail-img">
+                                <p class="detail-text">첨단 장비를 활용하여 통증을 제어하고 손상된 부위의 회복 속도를 높이는 맞춤형 물리치료입니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cat-item">
+                <div class="cat-header" onclick="toggleMainAccordion(this)">
+                    <h3>수액치료</h3><span class="icon">+</span>
+                </div>
+                <div class="cat-content">
+                    <div class="sub-accordion">
+                        <div class="sub-item">
+                            <div class="sub-header" onclick="toggleSubAccordion(this)">
+                                <span class="sub-header-text">통증/비타민/피로회복</span><span class="sub-icon">▼</span>
+                            </div>
+                            <div class="sub-content">
+                                <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e024?q=80&w=500" alt="수액치료" class="detail-img">
+                                <p class="detail-text">개인별 상태에 맞는 비타민, 미네랄, 영양 성분을 공급하여 활력을 되찾고 면역력을 강화합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cat-item">
+                <div class="cat-header" onclick="toggleMainAccordion(this)">
+                    <h3>노인 의학</h3><span class="icon">+</span>
+                </div>
+                <div class="cat-content">
+                    <div class="sub-accordion">
+                        <div class="sub-item">
+                            <div class="sub-header" onclick="toggleSubAccordion(this)">
+                                <span class="sub-header-text">만성질환/항노화</span><span class="sub-icon">▼</span>
+                            </div>
+                            <div class="sub-content">
+                                <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=500" alt="노인의학" class="detail-img">
+                                <p class="detail-text">고혈압, 당뇨 등 성인병 관리와 뇌기능 평가를 통해 어르신들의 삶의 질을 높이는 치료를 시행합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section><div class="contact-cta">
-    <h3>진료 예약 및 상담</h3>
-    <a href="tel:02-123-4567" class="phone-num">02.123.4567</a>
-</div></section>
+    <section id="blog">
+        <div class="title-wrap"><h2>진료 이야기</h2><div class="bar"></div></div>
+        <div id="naver-blog-list" class="blog-list">
+            <p style="text-align:center; color:#999; font-size:14px;">최신 소식을 불러오는 중입니다...</p>
+        </div>
+    </section>
 
-<footer><p><b>SD 통증재활의학과의원</b><br>© 2026 SD Rehabilitation Medicine. All Rights Reserved.</p></footer>
+    <section id="info-location">
+        <div class="info-location-wrapper">
+            <div class="info-box">
+                <b>진료 안내</b>
+                <div class="time-table">
+                    <div class="time-row"><span>평 일</span><span>09:00 - 19:00</span></div>
+                    <div class="time-row"><span>토요일</span><span>09:00 - 14:00</span></div>
+                    <div class="time-row"><span>점심시간</span><span>13:00 - 14:00</span></div>
+                    <div class="time-row" style="color:#e74c3c;"><span>일/공휴일</span><span>정기휴진</span></div>
+                </div>
+                <a href="tel:02.123.4567" class="tel">02.123.4567</a>
+            </div>
+            <div class="map-wrapper">
+                <div class="map-desc">
+                    <h4>오시는 길</h4>
+                    <p>서울특별시 송파구 가락동 123-7<br><b>경찰병원역 4번 출구 도보 3분</b></p>
+                </div>
+                <a href="https://map.naver.com/v5/" target="_blank" class="nav-button">네이버 지도로 길찾기</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer><p>© 2026 SD Rehabilitation Medicine. All Rights Reserved.</p></footer>
+
+<script>
+    function toggleMainAccordion(header) {
+        const item = header.parentElement;
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.cat-item').forEach(el => el.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+    }
+
+    function toggleSubAccordion(header) {
+        const item = header.parentElement;
+        const isActive = item.classList.contains('active');
+        const siblings = item.parentElement.querySelectorAll('.sub-item');
+        siblings.forEach(el => el.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+    }
+
+    async function loadNaverBlog() {
+        const blogId = 'routard'; 
+        const rssUrl = `https://rss.blog.naver.com/${blogId}.xml`;
+        const convertUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+        try {
+            const response = await fetch(convertUrl);
+            const data = await response.json();
+            const container = document.getElementById('naver-blog-list');
+            if (data.status === 'ok') {
+                container.innerHTML = ''; 
+                data.items.slice(0, 3).forEach(item => {
+                    const cleanDesc = item.description.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
+                    container.innerHTML += `
+                        <a href="${item.link}" class="blog-post" target="_blank">
+                            <span class="category">Latest Column</span>
+                            <h3>${item.title}</h3>
+                            <p>${cleanDesc}</p>
+                        </a>`;
+                });
+            }
+        } catch (error) {
+            document.getElementById('naver-blog-list').innerHTML = '<p style="text-align:center;">블로그를 불러올 수 없습니다.</p>';
+        }
+    }
+    window.addEventListener('DOMContentLoaded', loadNaverBlog);
+</script>
 </body>
 </html>
