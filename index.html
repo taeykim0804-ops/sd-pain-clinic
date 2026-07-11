@@ -93,11 +93,34 @@
 
         footer { text-align: center; padding: 50px 20px; background: #00153D; color: rgba(255,255,255,0.4); font-size: 12px; }
 
-        @media(min-width: 1024px) {
-            .nav-links { gap: 25px; } .nav-links a { font-size: 15px; }
-            .doc-card { flex-direction: row; } .doc-img { width: 40%; height: auto; }
-            .info-location-wrapper { flex-direction: row; } .info-box, .map-wrapper { flex: 1; }
-        }
+       /* [태블릿(패드) 화면 최적화: 768px ~ 1023px] */
+@media(min-width: 768px) and (max-width: 1023px) {
+    /* 1. 상단 메뉴바 간격 및 글씨 크기 조정 */
+    .nav-links { gap: 15px; }
+    .nav-links a { font-size: 14px; }
+    
+    /* 2. 의료진 소개: 모바일처럼 위아래가 아닌, PC처럼 좌우로 배치 */
+    .doc-card { flex-direction: row; }
+    .doc-img { width: 45%; height: auto; } /* 이미지 비율을 45%로 제한 */
+    .doc-info { width: 55%; padding: 30px; }
+    
+    /* 3. 진료/위치: 좌우로 나란히 배치 */
+    .info-location-wrapper { flex-direction: row; gap: 20px; }
+    .info-box, .map-wrapper { flex: 1; }
+    
+    /* 4. 내가 추가한 지도 사진 세로 길이 고정 (너무 길어지는 것 방지) */
+    .custom-map { height: 250px; object-fit: cover; }
+} @media(min-width: 1024px) {
+    .nav-links { gap: 25px; } 
+    .nav-links a { font-size: 15px; } 
+    .doc-card { flex-direction: row; } 
+    .doc-img { width: 40%; height: auto; } 
+    .info-location-wrapper { flex-direction: row; } 
+    .info-box, .map-wrapper { flex: 1; }
+    
+    /* 👉 PC 화면에서도 지도 사진 높이가 너무 뚱뚱해지지 않게 제한 */
+    .custom-map { height: 300px; object-fit: cover; }
+}
     </style>
 </head>
 <body>
