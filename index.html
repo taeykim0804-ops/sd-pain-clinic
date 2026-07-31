@@ -69,22 +69,7 @@
 
         .detail-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; background-color: #f1f1f1; display: block; }
         .detail-text { font-size: 14px; color: #555; line-height: 1.6; word-break: keep-all; }
-/* PC 버전 아코디언 최적화 (화면 너비 768px 이상) */
-  @media (min-width: 768px) {
-    .cat-item {
-      max-width: 1000px;
-      margin: 0 auto 20px auto;
-    }
-    .sub-accordion {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-    .detail-img {
-      max-height: 250px;
-      object-fit: cover;
-    }
-  }
+
         /* [블로그] */
         .blog-list { display: flex; flex-direction: column; gap: 30px; }
         .blog-post { text-decoration: none; color: inherit; display: block; padding-bottom: 25px; border-bottom: 1px solid #eee; }
