@@ -121,9 +121,34 @@
     /* 👉 PC 화면에서도 지도 사진 높이가 너무 뚱뚱해지지 않게 제한 */
     .custom-map { height: 300px; object-fit: cover; }
 }
-    </style>
+   /* [메인 팝업 배너] */
+.banner-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; justify-content: center; align-items: center; padding: 20px; }
+.banner-modal.show { display: flex; }
+.banner-content { background: #fff; border-radius: 15px; overflow: hidden; width: 100%; max-width: 420px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+.banner-close { position: absolute; top: 12px; right: 15px; background: rgba(0,0,0,0.4); color: #fff; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 22px; cursor: pointer; display: flex; justify-content: center; align-items: center; }
+.banner-img { width: 100%; display: block; height: auto; }
+.banner-footer { padding: 12px 15px; background: #f8f8f8; font-size: 14px; text-align: right; color: #555; }
+
+/* [모바일 약력 더보기] */
+.doc-history-content { overflow: hidden; transition: max-height 0.3s ease; }
+.doc-history-content.collapsed { max-height: 120px; position: relative; }
+.doc-history-content.collapsed::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 60px; background: linear-gradient(to bottom, rgba(248,246,242,0), rgba(248,246,242,1)); pointer-events: none; }
+.btn-more-history { display: none; width: 100%; padding: 12px; background: transparent; border: 1px solid var(--b); color: var(--b); border-radius: 8px; font-weight: 700; margin-top: 15px; cursor: pointer; text-align: center; }
+@media (max-width: 767px) { .btn-more-history { display: block; } }
+@media (min-width: 768px) { .doc-history-content.collapsed { max-height: none; } .doc-history-content.collapsed::after { display: none; } } </style>
 </head>
-<body>
+<!-- [홈페이지 팝업 배너] -->
+<div id="main-banner-modal" class="banner-modal">
+  <div class="banner-content">
+    <button class="banner-close" onclick="closeBanner()">×</button>
+    <!-- 💡 아래 src 속성에 Gmail에 있던 사진 파일명(예: IMG_0649.JPG)을 적어주세요! -->
+    <img src="IMG_0649.JPG" alt="진료 안내 배너" class="banner-img">
+    <div class="banner-footer">
+      <label><input type="checkbox" id="hide-banner-today"> 오늘 하루 보지 않기</label>
+    </div>
+  </div>
+</div>
+    <body>
 
 <nav>
     <a href="#" class="logo">SD 통증재활의학과</a>
@@ -150,7 +175,8 @@
   <h3>김동규 대표원장</h3>
   <span class="spec">재활의학과 전문의</span>
 
-  <!-- 약력 -->
+  <!-- 약력 & 학회 묶음 (모바일 더보기 기능) -->
+<div class="doc-history-content collapsed" id="docHistory">
   <h4 style="font-size: 16px; color: var(--b); margin-bottom: 10px; font-weight: 700;">약력</h4>
   <ul class="doc-list" style="margin-bottom: 25px;">
     <li>서울대학교 의과대학 졸업</li>
@@ -160,7 +186,6 @@
     <li>UCSD Physiology (San Diego, CA, USA) 연수</li>
   </ul>
 
-  <!-- 학회 -->
   <h4 style="font-size: 16px; color: var(--b); margin-bottom: 10px; font-weight: 700;">학회활동</h4>
   <ul class="doc-list">
     <li>대한재활의학회 정회원</li>
@@ -173,6 +198,8 @@
     <li>대한골다공증학회 정회원</li>
     <li>대한비만학회 정회원</li>
   </ul>
+</div>
+<button class="btn-more-history" id="btnMoreHistory" onclick="toggleHistory()">약력 더보기 ▼</button>
 </div>
         </div>
     </section>
