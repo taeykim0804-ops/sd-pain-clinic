@@ -412,7 +412,37 @@
 <footer><p>© 2026 SD Rehabilitation Medicine. All Rights Reserved.</p></footer>
 
 <script>
-    function toggleMainAccordion(header) {
+    // 팝업 배너 로직 (오늘 하루 보지 않기 쿠키 설정)
+  function closeBanner() {
+    const hideToday = document.getElementById('hide-banner-today').checked;
+    if (hideToday) {
+      const tomorrow = new Date();
+      tomorrow.setHours(24,0,0,0); // 자정에 초기화
+      document.cookie = "hideBanner=true; expires=" + tomorrow.toUTCString() + "; path=/";
+    }
+    document.getElementById('main-banner-modal').classList.remove('show');
+  }
+
+  // DOMContentLoaded 이벤트 없이 바로 실행하여 확실하게 띄움
+  if (document.cookie.indexOf('hideBanner=true') === -1) {
+    const banner = document.getElementById('main-banner-modal');
+    if (banner) {
+      banner.classList.add('show');
+    }
+  }
+
+  // 모바일 약력 더보기 토글
+  function toggleHistory() {
+    const content = document.getElementById('docHistory');
+    const btn = document.getElementById('btnMoreHistory');
+    if (content.classList.contains('collapsed')) {
+      content.classList.remove('collapsed');
+      btn.innerText = '약력 접기 ▲';
+    } else {
+      content.classList.add('collapsed');
+      btn.innerText = '약력 더보기 ▼';
+    }
+  }function toggleMainAccordion(header) {
         const item = header.parentElement;
         const isActive = item.classList.contains('active');
         document.querySelectorAll('.cat-item').forEach(el => el.classList.remove('active'));
