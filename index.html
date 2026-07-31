@@ -40,7 +40,7 @@
         .doc-list li::before { content: ''; position: absolute; left: 0; top: 11px; width: 8px; height: 1px; background: var(--g); }
 
         /* [치료 프로그램 - 1단 아코디언] */
-        .treat-accordion { display: flex; flex-direction: column; gap: 15px; }
+        .treat-accordion { display: flex; flex-direction: column; gap: 15px; max-width: 900px; margin: 0 auto; }
         .cat-item { background: #fff; border: 1px solid #eee; border-radius: 12px; overflow: hidden; transition: all 0.3s ease; }
         .cat-header { padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: #fff; transition: 0.3s; }
         .cat-header:hover { background: var(--s); }
@@ -67,7 +67,7 @@
         .sub-item.active .sub-header-text { color: var(--b); font-weight: 700; }
         .sub-item.active .sub-icon { transform: rotate(180deg); color: var(--b); }
 
-        .detail-img { width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; background-color: #f1f1f1; display: block; }
+        .detail-img { width: 100%; height: auto; max-height: 350px; object-fit: contain; border-radius: 8px; margin-bottom: 15px; display: block; }
         .detail-text { font-size: 14px; color: #555; line-height: 1.6; word-break: keep-all; }
 
         /* [블로그] */
@@ -281,7 +281,7 @@
   <div class="cat-content">
     <div class="sub-accordion">
 
-      <!-- 01. BrainBody -->
+      <!--  BrainBody -->
       <div class="sub-item">
         <div class="sub-header" onclick="toggleSubAccordion(this)">
           <span class="sub-header-text">01. BrainBody</span><span class="sub-icon">▼</span>
@@ -296,7 +296,7 @@
         </div>
       </div>
 
-      <!-- 02. KOROT -->
+      <!--  KOROT -->
       <div class="sub-item">
         <div class="sub-header" onclick="toggleSubAccordion(this)">
           <span class="sub-header-text">02. KOROT</span><span class="sub-icon">▼</span>
@@ -311,7 +311,7 @@
         </div>
       </div>
 
-      <!-- 03. SD BIOSENSOR F200 -->
+      <!--  SD BIOSENSOR F200 -->
       <div class="sub-item">
         <div class="sub-header" onclick="toggleSubAccordion(this)">
           <span class="sub-header-text">03. SD BIOSENSOR F200</span><span class="sub-icon">▼</span>
@@ -326,7 +326,7 @@
         </div>
       </div>
 
-      <!-- 04. SA-6000 -->
+      <!--  SA-6000 -->
       <div class="sub-item">
         <div class="sub-header" onclick="toggleSubAccordion(this)">
           <span class="sub-header-text">04. SA-6000</span><span class="sub-icon">▼</span>
