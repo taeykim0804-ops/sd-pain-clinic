@@ -485,24 +485,7 @@
   }
 </style>
 <script>
-    // 팝업 배너 로직 (오늘 하루 보지 않기 쿠키 설정)
-  function closeBanner() {
-    const hideToday = document.getElementById('hide-banner-today').checked;
-    if (hideToday) {
-      const tomorrow = new Date();
-      tomorrow.setHours(24,0,0,0); // 자정에 초기화
-      document.cookie = "hideBanner=true; expires=" + tomorrow.toUTCString() + "; path=/";
-    }
-    document.getElementById('main-banner-modal').classList.remove('show');
-  }
 
-  // DOMContentLoaded 이벤트 없이 바로 실행하여 확실하게 띄움
-  if (document.cookie.indexOf('hideBanner=true') === -1) {
-    const banner = document.getElementById('main-banner-modal');
-    if (banner) {
-      banner.classList.add('show');
-    }
-  }
 
   // 모바일 약력 더보기 토글
   function toggleHistory() {
