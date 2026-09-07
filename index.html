@@ -626,3 +626,68 @@
 </script>
 </body>
 </html>
+<!-- [IMAGE BANNER SECTION] -->
+<section class="custom-banner-section">
+    <div class="banner-container">
+        <!-- 💡 src="보유하신이미지파일명.png" 경로를 원하시는 이미지 파일명으로 변경하세요 -->
+        <a href="#info-location" class="banner-link">
+            <img src="배너.png" alt="서울SD통증재활의학과 특별 배너" class="banner-image">
+        </a>
+    </div>
+</section>
+
+<style>
+.custom-banner-section {
+    padding: 0 20px 60px 20px;
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.banner-container {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 32, 91, 0.08);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: bannerFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+.banner-link {
+    display: block;
+    width: 100%;
+    line-height: 0; /* 이미지 하단 미세 여백 제거 */
+}
+
+.banner-image {
+    width: 100%;
+    height: auto;
+    max-height: 380px; /* 너무 길어지는 현상 방지 */
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.banner-image:hover {
+    transform: scale(1.01); /* 마우스 오버 시 미세한 줌인 효과 */
+}
+
+@keyframes bannerFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .custom-banner-section {
+        padding: 0 15px 40px 15px;
+    }
+    .banner-container {
+        border-radius: 12px;
+    }
+    .banner-image {
+        max-height: 220px; /* 모바일 화면 맞춤 높이 */
+    }
+}
+</style>
