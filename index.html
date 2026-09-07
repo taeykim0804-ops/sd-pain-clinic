@@ -157,149 +157,151 @@
     <h1>서울 에스디통증재활의학과의원</h1>
     <p>Rehabilitation Medical Treatment</p>
 </header>
-<!-- [DOCTOR MESSAGE SECTION - PREMIUM REDESIGN] -->
-<section class="doctor-message-section">
-    <div class="message-card">
-        <div class="message-header-wrap">
-            <span class="message-badge">DIRECTOR'S PHILOSOPHY</span>
-            <h2 class="message-title">
-                12년의 대학 교수 경험,<br>
-                <span>이제 환자분을 위한 진료로 이어가겠습니다.</span>
-            </h2>
-        </div>
-        
-        <div class="message-body">
-            <p class="message-desc">
-                서울대학교 의과대학을 졸업하고 대학병원과 대학에서 12년간 진료와 교육, 연구에 매진했습니다. 
-                이제 그 경험을 바탕으로 2026년 최신 의료장비와 정밀한 진단·치료를 통해 보다 세심하고 정확한 진료를 시작합니다.
-            </p>
-            
-            <div class="message-quote-box">
-                <p class="quote-text">“ 경험은 깊게, 장비는 최신으로, 진료는 정밀하게. ”</p>
-            </div>
-        </div>
-
-        <div class="message-footer">
-            <strong>서울SD통증재활의학과</strong>에서 환자분의 건강한 일상을 함께 만들어가겠습니다.
-        </div>
-    </div>
-</section>
-
+  <!-- [포천막걸리체 웹폰트 로드] -->
 <style>
-.doctor-message-section {
-    background: linear-gradient(180deg, #FFFFFF 0%, #F9F8F5 100%);
-    padding: 100px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@font-face {
+    font-family: 'PocheonMakgeolli';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2k@1.0/PocheonMakgeolli.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
 }
 
-.message-card {
-    max-width: 860px;
-    width: 100%;
+/* [원장 인사말 및 철학 섹션] */
+.doctor-greeting-section {
     background: #FFFFFF;
-    border: 1px solid rgba(198, 146, 20, 0.25);
-    border-radius: 24px;
-    padding: 60px 50px;
-    box-shadow: 0 20px 50px rgba(0, 32, 91, 0.06);
-    position: relative;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: luxuryFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    padding: 80px 20px 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.message-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50px;
-    height: 3px;
-    background: var(--g, #C69214);
-    border-radius: 2px;
+.greeting-card {
+    background: #F9F8F5;
+    border: 1px solid #EAE5DC;
+    border-radius: 20px;
+    padding: 50px 40px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 32, 91, 0.03);
 }
 
-.message-badge {
+.greeting-badge {
     display: inline-block;
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     color: var(--g, #C69214);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     text-transform: uppercase;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
-.message-title {
-    font-size: 28px;
+.greeting-title {
+    font-family: 'PocheonMakgeolli', sans-serif;
+    font-size: 32px;
     color: var(--b, #00205B);
-    font-weight: 700;
     line-height: 1.4;
+    margin-bottom: 25px;
+    font-weight: normal;
+}
+
+.greeting-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--g, #C69214);
+    margin: 0 auto 25px;
+}
+
+.greeting-desc {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    color: #555555;
+    line-height: 1.85;
     margin-bottom: 30px;
-    letter-spacing: -0.5px;
-}
-
-.message-title span {
-    font-weight: 400;
-    color: #444;
-    font-size: 24px;
-}
-
-.message-desc {
-    font-size: 15.5px;
-    color: #555;
-    line-height: 1.9;
-    margin-bottom: 35px;
     word-break: keep-all;
 }
 
-.message-quote-box {
-    position: relative;
-    background: #FDFBF7;
-    border-left: 3px solid var(--g, #C69214);
-    padding: 22px 25px;
-    margin-bottom: 35px;
-    border-radius: 0 12px 12px 0;
-}
-
-.quote-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 19px;
-    font-style: italic;
+.greeting-quote {
+    font-family: 'PocheonMakgeolli', sans-serif;
+    font-size: 22px;
     color: var(--b, #00205B);
-    font-weight: 600;
-    text-align: center;
-    letter-spacing: 0.5px;
+    background: #FFFFFF;
+    border: 1px dashed var(--g, #C69214);
+    padding: 18px 20px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-bottom: 25px;
 }
 
-.message-footer {
+.greeting-footer {
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 15px;
-    color: #333;
-    text-align: center;
-    letter-spacing: -0.3px;
+    color: #333333;
+    font-weight: 500;
 }
 
-.message-footer strong {
-    color: var(--b, #00205B);
-    font-weight: 700;
+/* [보유 이미지 배너 섹션 - 정돈된 컨테이너 레이아웃] */
+.clinic-banner-section {
+    max-width: 1200px;
+    margin: 20px auto 60px auto;
+    padding: 0 20px;
 }
 
-@keyframes luxuryFadeUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.clinic-banner-wrap {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 32, 91, 0.06);
+    background: #fff;
+    line-height: 0;
+}
+
+.clinic-banner-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.clinic-banner-wrap img:hover {
+    transform: scale(1.005);
 }
 
 @media (max-width: 768px) {
-    .message-card { padding: 40px 22px; }
-    .message-title { font-size: 21px; }
-    .message-title span { font-size: 17px; }
-    .message-desc { font-size: 14px; }
-    .quote-text { font-size: 16px; }
+    .greeting-card { padding: 35px 20px; }
+    .greeting-title { font-size: 24px; }
+    .greeting-quote { font-size: 18px; }
+    .greeting-desc { font-size: 14px; }
 }
 </style>
-</style>
+
+<!-- HTML 구조 (의료진 소개 섹션 바로 위에 위치시킵니다) -->
+<section class="doctor-greeting-section">
+    <div class="greeting-card">
+        <span class="greeting-badge">DIRECTOR MESSAGE</span>
+        <h2 class="greeting-title">
+            12년의 대학 교수 경험,<br>
+            이제 환자분을 위한 진료로 이어가겠습니다.
+        </h2>
+        <div class="greeting-divider"></div>
+        <p class="greeting-desc">
+            서울대학교 의과대학을 졸업하고 대학병원과 대학에서 12년간 진료와 교육, 연구에 매진했습니다.<br>
+            이제 그 경험을 바탕으로 2026년 최신 의료장비와 정밀한 진단·치료를 통해 보다 세심하고 정확한 진료를 시작합니다.
+        </p>
+        <div class="greeting-quote">
+            경험은 깊게, 장비는 최신으로, 진료는 정밀하게.
+        </div>
+        <p class="greeting-footer">
+            서울SD통증재활의학과에서 환자분의 건강한 일상을 함께 만들어가겠습니다.
+        </p>
+    </div>
+</section>
+
+<!-- 보유하신 배너 이미지 적용 영역 (src 속성만 파일명으로 변경하세요) -->
+<section class="clinic-banner-section">
+    <div class="clinic-banner-wrap">
+        <img src="배너.png" alt="서울SD통증재활의학과 안내 배너">
+    </div>
+</section>      
  <main>
     <section id="about">
         <div class="title-wrap"><h2>의료진 소개</h2><div class="bar"></div></div>
