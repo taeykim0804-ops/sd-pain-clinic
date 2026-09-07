@@ -157,108 +157,165 @@
     <h1>서울 에스디통증재활의학과의원</h1>
     <p>Rehabilitation Medical Treatment</p>
 </header>
-<!-- [원장 인사말 섹션] -->
+        <!-- [원장 인사말 섹션 - 하이엔드 스크롤 애니메이션 & 폰트 적용] -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+
 <section class="doctor-greeting-section">
-    <div class="greeting-card">
-        <span class="greeting-badge">DIRECTOR MESSAGE</span>
-        <h2 class="greeting-title">
+    <div class="greeting-content">
+        <span class="greeting-badge reveal-text delay-1">DIRECTOR'S PHILOSOPHY</span>
+        
+        <h2 class="greeting-title reveal-text delay-2">
             12년의 대학 교수 경험,<br>
             이제 환자분을 위한 진료로 이어가겠습니다.
         </h2>
-        <div class="greeting-divider"></div>
-        <p class="greeting-desc">
+        
+        <div class="greeting-divider reveal-text delay-3"></div>
+        
+        <p class="greeting-desc reveal-text delay-4">
             서울대학교 의과대학을 졸업하고 대학병원과 대학에서 12년간 진료와 교육, 연구에 매진했습니다.<br>
-            이제 그 경험을 바탕으로 2026년 최신 의료장비와 정밀한 진단·치료를 통해 보다 세심하고 정확한 진료를 시작합니다.
+            이제 그 경험을 바탕으로 2026년 최신 의료장비와 정밀한 진단·치료를 통해<br>
+            보다 세심하고 정확한 진료를 시작합니다.
         </p>
-        <div class="greeting-quote">
-            경험은 깊게, 장비는 최신으로, 진료는 정밀하게.
-        </div>
-        <p class="greeting-footer">
-            서울SD통증재활의학과에서 환자분의 건강한 일상을 함께 만들어가겠습니다.
+        
+        <!-- 네모 박스를 없애고 우아한 큰따옴표 텍스트로 강조 -->
+        <p class="greeting-quote reveal-text delay-5">
+            “ 경험은 깊게, 장비는 최신으로, 진료는 정밀하게 ”
+        </p>
+        
+        <p class="greeting-footer reveal-text delay-6">
+            <strong>서울SD통증재활의학과</strong>에서 환자분의 건강한 일상을 함께 만들어가겠습니다.
         </p>
     </div>
 </section>
 
 <style>
+/* 전체 영역 배경 및 여백 설정 (배경을 깔끔한 화이트톤으로 통일) */
 .doctor-greeting-section {
     background-color: #FFFFFF;
-    padding: 60px 20px 30px 20px;
-    max-width: 1200px;
+    padding: 100px 20px 80px 20px;
+    max-width: 1000px;
     margin: 0 auto;
     box-sizing: border-box;
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    overflow: hidden; /* 애니메이션 중 삐져나옴 방지 */
 }
 
-.greeting-card {
-    background: #F8F9FA;
-    border: 1px solid #E9ECEF;
-    border-radius: 16px;
-    padding: 50px 30px;
+.greeting-content {
     text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
+/* 스르르 나타나는 애니메이션 기본 설정 (시작 상태: 투명하고 아래로 40px 내려가 있음) */
+.reveal-text {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1); /* 아주 부드럽게 감속하는 곡선 */
+}
+
+/* 자바스크립트에 의해 .is-visible 클래스가 붙으면 제자리로 나타남 */
+.reveal-text.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 순차적으로 나타나도록 딜레이(지연시간) 부여 */
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.3s; }
+.delay-3 { transition-delay: 0.5s; }
+.delay-4 { transition-delay: 0.7s; }
+.delay-5 { transition-delay: 0.9s; }
+.delay-6 { transition-delay: 1.1s; }
+
+
+/* 타이포그래피 세부 디자인 */
 .greeting-badge {
     display: inline-block;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     color: #C69214;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
     text-transform: uppercase;
 }
 
 .greeting-title {
-    font-size: 26px;
+    font-family: 'Noto Serif KR', serif; /* 고급스러운 명조체 적용 */
+    font-size: 30px;
     font-weight: 700;
     color: #00205B;
-    line-height: 1.45;
-    margin: 0 0 20px 0;
+    line-height: 1.5;
+    margin: 0 0 30px 0;
     letter-spacing: -0.5px;
 }
 
 .greeting-divider {
-    width: 36px;
+    width: 40px;
     height: 2px;
     background-color: #C69214;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 30px auto;
 }
 
 .greeting-desc {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 400;
-    color: #495057;
-    line-height: 1.8;
-    margin: 0 0 25px 0;
+    color: #555555;
+    line-height: 1.9;
+    margin: 0 0 40px 0;
     word-break: keep-all;
 }
 
 .greeting-quote {
-    font-size: 17px;
-    font-weight: 700;
+    font-family: 'Noto Serif KR', serif;
+    font-size: 24px;
+    font-weight: 600;
     color: #00205B;
-    background: #FFFFFF;
-    border: 1px solid #E2E8F0;
-    padding: 16px 24px;
-    border-radius: 8px;
-    display: inline-block;
-    margin-bottom: 25px;
+    margin: 0 0 40px 0;
     letter-spacing: -0.3px;
 }
 
 .greeting-footer {
-    font-size: 15px;
-    font-weight: 500;
-    color: #212529;
+    font-size: 16px;
+    color: #333333;
     margin: 0;
 }
 
+.greeting-footer strong {
+    font-weight: 700;
+    color: #00205B;
+}
+
 @media (max-width: 768px) {
-    .greeting-card { padding: 35px 20px; }
-    .greeting-title { font-size: 20px; }
-    .greeting-quote { font-size: 15px; padding: 12px 16px; }
-    .greeting-desc { font-size: 14px; }
+    .doctor-greeting-section { padding: 60px 20px; }
+    .greeting-title { font-size: 22px; }
+    .greeting-desc { font-size: 14.5px; }
+    .greeting-quote { font-size: 18px; }
+    .greeting-footer { font-size: 14px; }
 }
 </style>
+
+<script>
+// [스크롤 시 스르르 나타나는 애니메이션 트리거]
+document.addEventListener("DOMContentLoaded", function() {
+    // 옵션: 요소가 화면에 15% 정도 보일 때 애니메이션 실행
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15 
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // 한 번 애니메이션이 실행되면 다시 숨기지 않음
+            }
+        });
+    }, observerOptions);
+
+    // .reveal-text 클래스를 가진 모든 요소를 감시
+    const revealElements = document.querySelectorAll('.reveal-text');
+    revealElements.forEach(el => observer.observe(el));
+});
+</script>
         <main>
     <section id="about">
         <div class="title-wrap"><h2>의료진 소개</h2><div class="bar"></div></div>
