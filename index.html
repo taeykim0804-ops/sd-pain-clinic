@@ -157,101 +157,96 @@
     <h1>서울 에스디통증재활의학과의원</h1>
     <p>Rehabilitation Medical Treatment</p>
 </header>
-  <!-- [포천막걸리체 웹폰트 로드] -->
+ <!-- [원장 인사말 & 배너 통합 스타일] -->
 <style>
-@font-face {
-    font-family: 'PocheonMakgeolli';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2k@1.0/PocheonMakgeolli.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-/* [원장 인사말 및 철학 섹션] */
+/* 원장 인사말 섹션 */
 .doctor-greeting-section {
-    background: #FFFFFF;
-    padding: 80px 20px 40px 20px;
+    background-color: #FFFFFF;
+    padding: 60px 20px 30px 20px;
     max-width: 1200px;
     margin: 0 auto;
+    font-family: 'Pretendard', 'Noto Sans KR', -apple-system, sans-serif;
+    box-sizing: border-box;
 }
 
 .greeting-card {
-    background: #F9F8F5;
-    border: 1px solid #EAE5DC;
-    border-radius: 20px;
-    padding: 50px 40px;
+    background: #F8F9FA;
+    border: 1px solid #E9ECEF;
+    border-radius: 16px;
+    padding: 50px 30px;
     text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 32, 91, 0.03);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .greeting-badge {
     display: inline-block;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 2px;
-    color: var(--g, #C69214);
-    margin-bottom: 15px;
+    color: #C69214;
+    margin-bottom: 16px;
     text-transform: uppercase;
-    font-family: 'Noto Sans KR', sans-serif;
 }
 
 .greeting-title {
-    font-family: 'PocheonMakgeolli', sans-serif;
-    font-size: 32px;
-    color: var(--b, #00205B);
-    line-height: 1.4;
-    margin-bottom: 25px;
-    font-weight: normal;
+    font-size: 26px;
+    font-weight: 700;
+    color: #00205B;
+    line-height: 1.45;
+    margin: 0 0 20px 0;
+    letter-spacing: -0.5px;
 }
 
 .greeting-divider {
-    width: 40px;
+    width: 36px;
     height: 2px;
-    background: var(--g, #C69214);
-    margin: 0 auto 25px;
+    background-color: #C69214;
+    margin: 0 auto 20px auto;
 }
 
 .greeting-desc {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 15px;
-    color: #555555;
-    line-height: 1.85;
-    margin-bottom: 30px;
+    font-weight: 400;
+    color: #495057;
+    line-height: 1.8;
+    margin: 0 0 25px 0;
     word-break: keep-all;
 }
 
 .greeting-quote {
-    font-family: 'PocheonMakgeolli', sans-serif;
-    font-size: 22px;
-    color: var(--b, #00205B);
+    font-size: 17px;
+    font-weight: 700;
+    color: #00205B;
     background: #FFFFFF;
-    border: 1px dashed var(--g, #C69214);
-    padding: 18px 20px;
-    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+    padding: 16px 24px;
+    border-radius: 8px;
     display: inline-block;
     margin-bottom: 25px;
+    letter-spacing: -0.3px;
 }
 
 .greeting-footer {
-    font-family: 'Noto Sans KR', sans-serif;
     font-size: 15px;
-    color: #333333;
     font-weight: 500;
+    color: #212529;
+    margin: 0;
 }
 
-/* [보유 이미지 배너 섹션 - 정돈된 컨테이너 레이아웃] */
+/* 이미지 배너 섹션 */
 .clinic-banner-section {
     max-width: 1200px;
-    margin: 20px auto 60px auto;
+    margin: 20px auto 50px auto;
     padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .clinic-banner-wrap {
     width: 100%;
-    border-radius: 16px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0, 32, 91, 0.06);
-    background: #fff;
-    line-height: 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    background: #FFFFFF;
 }
 
 .clinic-banner-wrap img {
@@ -259,22 +254,17 @@
     height: auto;
     display: block;
     object-fit: cover;
-    transition: transform 0.4s ease;
-}
-
-.clinic-banner-wrap img:hover {
-    transform: scale(1.005);
 }
 
 @media (max-width: 768px) {
     .greeting-card { padding: 35px 20px; }
-    .greeting-title { font-size: 24px; }
-    .greeting-quote { font-size: 18px; }
+    .greeting-title { font-size: 20px; }
+    .greeting-quote { font-size: 15px; padding: 12px 16px; }
     .greeting-desc { font-size: 14px; }
 }
 </style>
 
-<!-- HTML 구조 (의료진 소개 섹션 바로 위에 위치시킵니다) -->
+<!-- [원장 인사말 HTML] -->
 <section class="doctor-greeting-section">
     <div class="greeting-card">
         <span class="greeting-badge">DIRECTOR MESSAGE</span>
@@ -296,12 +286,12 @@
     </div>
 </section>
 
-<!-- 보유하신 배너 이미지 적용 영역 (src 속성만 파일명으로 변경하세요) -->
+<!-- [배너 이미지 HTML] -->
 <section class="clinic-banner-section">
     <div class="clinic-banner-wrap">
         <img src="배너.png" alt="서울SD통증재활의학과 안내 배너">
     </div>
-</section>      
+</section>       
  <main>
     <section id="about">
         <div class="title-wrap"><h2>의료진 소개</h2><div class="bar"></div></div>
@@ -628,68 +618,3 @@
 </script>
 </body>
 </html>
-<!-- [IMAGE BANNER SECTION] -->
-<section class="custom-banner-section">
-    <div class="banner-container">
-        <!-- 💡 src="보유하신이미지파일명.png" 경로를 원하시는 이미지 파일명으로 변경하세요 -->
-        <a href="#info-location" class="banner-link">
-            <img src="배너.jpg" alt="서울SD통증재활의학과 특별 배너" class="banner-image">
-        </a>
-    </div>
-</section>
-
-<style>
-.custom-banner-section {
-    padding: 0 20px 60px 20px;
-    max-width: 1240px;
-    margin: 0 auto;
-}
-
-.banner-container {
-    width: 100%;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 32, 91, 0.08);
-    opacity: 0;
-    transform: translateY(20px);
-    animation: bannerFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
-}
-
-.banner-link {
-    display: block;
-    width: 100%;
-    line-height: 0; /* 이미지 하단 미세 여백 제거 */
-}
-
-.banner-image {
-    width: 100%;
-    height: auto;
-    max-height: 380px; /* 너무 길어지는 현상 방지 */
-    object-fit: cover;
-    display: block;
-    transition: transform 0.5s ease;
-}
-
-.banner-image:hover {
-    transform: scale(1.01); /* 마우스 오버 시 미세한 줌인 효과 */
-}
-
-@keyframes bannerFadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (max-width: 768px) {
-    .custom-banner-section {
-        padding: 0 15px 40px 15px;
-    }
-    .banner-container {
-        border-radius: 12px;
-    }
-    .banner-image {
-        max-height: 220px; /* 모바일 화면 맞춤 높이 */
-    }
-}
-</style>
