@@ -157,97 +157,134 @@
     <h1>서울 에스디통증재활의학과의원</h1>
     <p>Rehabilitation Medical Treatment</p>
 </header>
-<!-- [DOCTOR MESSAGE SECTION] -->
+<!-- [DOCTOR MESSAGE SECTION - PREMIUM REDESIGN] -->
 <section class="doctor-message-section">
-    <div class="message-container">
-        <span class="message-badge">DIRECTOR MESSAGE</span>
-        <h2 class="message-title">
-            12년의 대학 교수 경험,<br>
-            이제 환자분을 위한 진료로 이어가겠습니다.
-        </h2>
-        <div class="message-divider"></div>
-        <p class="message-sub">
-            서울대학교 의과대학을 졸업하고 대학병원과 대학에서 12년간 진료와 교육, 연구에 매진했습니다.<br>
-            이제 그 경험을 바탕으로 2026년 최신 의료장비와 정밀한 진단·치료를 통해 보다 세심하고 정확한 진료를 시작합니다.
-        </p>
-        <div class="message-highlight">
-            "경험은 깊게, 장비는 최신으로, 진료는 정밀하게."
+    <div class="message-card">
+        <div class="message-header-wrap">
+            <span class="message-badge">DIRECTOR'S PHILOSOPHY</span>
+            <h2 class="message-title">
+                12년의 대학 교수 경험,<br>
+                <span>이제 환자분을 위한 진료로 이어가겠습니다.</span>
+            </h2>
         </div>
-        <p class="message-footer">
-            서울SD통증재활의학과에서 환자분의 건강한 일상을 함께 만들어가겠습니다.
-        </p>
+        
+        <div class="message-body">
+            <p class="message-desc">
+                서울대학교 의과대학을 졸업하고 대학병원과 대학에서 12년간 진료와 교육, 연구에 매진했습니다. 
+                이제 그 경험을 바탕으로 2026년 최신 의료장비와 정밀한 진단·치료를 통해 보다 세심하고 정확한 진료를 시작합니다.
+            </p>
+            
+            <div class="message-quote-box">
+                <p class="quote-text">“ 경험은 깊게, 장비는 최신으로, 진료는 정밀하게. ”</p>
+            </div>
+        </div>
+
+        <div class="message-footer">
+            <strong>서울SD통증재활의학과</strong>에서 환자분의 건강한 일상을 함께 만들어가겠습니다.
+        </div>
     </div>
 </section>
 
 <style>
 .doctor-message-section {
-    background: var(--s, #F8F6F2);
-    padding: 80px 20px;
-    text-align: center;
-    overflow: hidden;
+    background: linear-gradient(180deg, #FFFFFF 0%, #F9F8F5 100%);
+    padding: 100px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.message-container {
-    max-width: 800px;
-    margin: 0 auto;
+.message-card {
+    max-width: 860px;
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid rgba(198, 146, 20, 0.25);
+    border-radius: 24px;
+    padding: 60px 50px;
+    box-shadow: 0 20px 50px rgba(0, 32, 91, 0.06);
+    position: relative;
     opacity: 0;
     transform: translateY(30px);
-    animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: luxuryFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.message-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background: var(--g, #C69214);
+    border-radius: 2px;
 }
 
 .message-badge {
     display: inline-block;
     font-size: 11px;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     color: var(--g, #C69214);
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     text-transform: uppercase;
 }
 
 .message-title {
-    font-size: 26px;
+    font-size: 28px;
     color: var(--b, #00205B);
     font-weight: 700;
     line-height: 1.4;
-    margin-bottom: 25px;
-}
-
-.message-divider {
-    width: 40px;
-    height: 2px;
-    background: var(--g, #C69214);
-    margin: 0 auto 25px;
-}
-
-.message-sub {
-    font-size: 15px;
-    color: #555;
-    line-height: 1.8;
     margin-bottom: 30px;
+    letter-spacing: -0.5px;
+}
+
+.message-title span {
+    font-weight: 400;
+    color: #444;
+    font-size: 24px;
+}
+
+.message-desc {
+    font-size: 15.5px;
+    color: #555;
+    line-height: 1.9;
+    margin-bottom: 35px;
     word-break: keep-all;
 }
 
-.message-highlight {
+.message-quote-box {
+    position: relative;
+    background: #FDFBF7;
+    border-left: 3px solid var(--g, #C69214);
+    padding: 22px 25px;
+    margin-bottom: 35px;
+    border-radius: 0 12px 12px 0;
+}
+
+.quote-text {
     font-family: 'Playfair Display', serif;
-    font-size: 18px;
+    font-size: 19px;
     font-style: italic;
     color: var(--b, #00205B);
     font-weight: 600;
-    margin-bottom: 25px;
-    padding: 10px;
-    background: rgba(198, 146, 20, 0.08);
-    display: inline-block;
-    border-radius: 4px;
+    text-align: center;
+    letter-spacing: 0.5px;
 }
 
 .message-footer {
     font-size: 15px;
-    font-weight: 500;
-    color: var(--text, #2D2D2D);
+    color: #333;
+    text-align: center;
+    letter-spacing: -0.3px;
 }
 
-@keyframes fadeInUp {
+.message-footer strong {
+    color: var(--b, #00205B);
+    font-weight: 700;
+}
+
+@keyframes luxuryFadeUp {
     to {
         opacity: 1;
         transform: translateY(0);
@@ -255,12 +292,15 @@
 }
 
 @media (max-width: 768px) {
-    .message-title { font-size: 22px; }
-    .message-sub { font-size: 14px; }
-    .message-highlight { font-size: 16px; }
+    .message-card { padding: 40px 22px; }
+    .message-title { font-size: 21px; }
+    .message-title span { font-size: 17px; }
+    .message-desc { font-size: 14px; }
+    .quote-text { font-size: 16px; }
 }
 </style>
-<main>
+</style>
+ <main>
     <section id="about">
         <div class="title-wrap"><h2>의료진 소개</h2><div class="bar"></div></div>
         <div class="doc-card">
