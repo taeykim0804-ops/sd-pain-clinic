@@ -628,23 +628,29 @@
     }
 }    window.addEventListener('DOMContentLoaded', loadNaverBlog);
 </script>
-        <!-- [팝업 1: 기존 배너] -->
-<div id="popup1" style="position: fixed; top: 80px; left: 20px; z-index: 9999; background: #fff; border: 2px solid #00205B; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); width: 320px; overflow: hidden;">
-    <div style="padding: 10px;">
+     <!-- [팝업 1: 기존 배너] -->
+<div id="popup1" style="display: none; position: fixed; top: 70px; left: 20px; z-index: 9999; background: #fff; border: 2px solid #00205B; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); width: 340px; max-width: 90vw; max-height: 80vh; overflow: hidden; flex-direction: column;">
+    <div style="padding: 10px; overflow-y: auto; flex: 1;">
         <img src="배너.jpg" alt="공지사항 1" style="width: 100%; height: auto; display: block; border-radius: 5px;">
     </div>
-    <div style="background: #f1f1f1; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 13px;">
-        <button onclick="document.getElementById('popup1').style.display='none'" style="border: none; background: #00205B; color: #fff; padding: 4px 12px; border-radius: 3px; cursor: pointer; margin-left: auto;">닫기</button>
+    <div style="background: #f1f1f1; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; border-top: 1px solid #ddd; shrink: 0;">
+        <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; color: #333; font-size: 12px; user-select: none;">
+            <input type="checkbox" id="chk_popup1"> 오늘 하루 보지 않기
+        </label>
+        <button onclick="closePopup('popup1', 'chk_popup1')" style="border: none; background: #00205B; color: #fff; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">닫기</button>
     </div>
 </div>
 
-<!-- [팝업 2: 신규 배너 (옆으로 340px 이동해서 배치)] -->
-<div id="popup2" style="position: fixed; top: 80px; left: 360px; z-index: 9999; background: #fff; border: 2px solid #00205B; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); width: 320px; overflow: hidden;">
-    <div style="padding: 10px;">
+<!-- [팝업 2: 배너2.png] -->
+<div id="popup2" style="display: none; position: fixed; top: 70px; left: 380px; z-index: 9999; background: #fff; border: 2px solid #00205B; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); width: 340px; max-width: 90vw; max-height: 80vh; overflow: hidden; flex-direction: column;">
+    <div style="padding: 10px; overflow-y: auto; flex: 1;">
         <img src="배너2.png" alt="공지사항 2" style="width: 100%; height: auto; display: block; border-radius: 5px;">
     </div>
-    <div style="background: #f1f1f1; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 13px;">
-        <button onclick="document.getElementById('popup2').style.display='none'" style="border: none; background: #00205B; color: #fff; padding: 4px 12px; border-radius: 3px; cursor: pointer; margin-left: auto;">닫기</button>
+    <div style="background: #f1f1f1; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; border-top: 1px solid #ddd; shrink: 0;">
+        <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; color: #333; font-size: 12px; user-select: none;">
+            <input type="checkbox" id="chk_popup2"> 오늘 하루 보지 않기
+        </label>
+        <button onclick="closePopup('popup2', 'chk_popup2')" style="border: none; background: #00205B; color: #fff; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">닫기</button>
     </div>
 </div>
 </body>
@@ -899,5 +905,43 @@ if (window.innerWidth < 768) {
         p2.style.top = '360px'; // 모바일에서는 첫 번째 팝업 아래로 정렬
     }
 }
+// 팝업 노출 여부 확인 및 제어
+function initPopups() {
+    const now = new Date().getTime();
+
+    // 팝업 1 저장 기간 체크
+    const hideP1 = localStorage.getItem('hide_popup1');
+    if (!hideP1 || now > parseInt(hideP1)) {
+        document.getElementById('popup1').style.display = 'flex';
+    }
+
+    // 팝업 2 저장 기간 체크
+    const hideP2 = localStorage.getItem('hide_popup2');
+    if (!hideP2 || now > parseInt(hideP2)) {
+        document.getElementById('popup2').style.display = 'flex';
+    }
+
+    // 모바일(화면 폭 768px 미만) 위치 조정
+    if (window.innerWidth < 768) {
+        const p1 = document.getElementById('popup1');
+        const p2 = document.getElementById('popup2');
+        if (p1) { p1.style.left = '5%'; p1.style.top = '40px'; }
+        if (p2) { p2.style.left = '5%'; p2.style.top = '340px'; }
+    }
+}
+
+// 팝업 닫기 및 '오늘 하루 보지 않기' 처리
+function closePopup(popupId, chkId) {
+    const chk = document.getElementById(chkId);
+    if (chk && chk.checked) {
+        // 24시간(86,400,000 밀리초) 동안 표시 안 함 저장
+        const expireTime = new Date().getTime() + (24 * 60 * 60 * 1000);
+        localStorage.setItem('hide_' + popupId, expireTime);
+    }
+    document.getElementById(popupId).style.display = 'none';
+}
+
+// 페이지 로드 시 팝업 실행
+window.addEventListener('DOMContentLoaded', initPopups);
 </script>
 </html>
