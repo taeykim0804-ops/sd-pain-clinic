@@ -591,9 +591,9 @@
 
   async function loadNaverBlog() {
     try {
-        // 내가 만든 자체 API 서버 호출
+        // 백엔드 API 서버리스 함수 호출
         const response = await fetch('/api/naver-blog');
-        if (!response.ok) throw new Error("서버 응답 오류");
+        if (!response.ok) throw new Error("서버 응답 에러");
         
         const str = await response.text();
         const parser = new DOMParser();
@@ -601,16 +601,21 @@
         const items = xml.querySelectorAll('item');
         const container = document.getElementById('naver-blog-list');
         
-        if (items.length === 0) throw new Error("글 없음");
+        if (!container) return;
+        if (items.length === 0) {
+            container.innerHTML = '<p style="text-align:center; color:#999;">최신 소식을 준비 중입니다.</p>';
+            return;
+        }
         
         container.innerHTML = '';
         let count = 0;
         
         items.forEach(item => {
-            if (count >= 3) return;
+            if (count >= 3) return; // 최신글 3개만 표시
             const title = item.querySelector('title')?.textContent || '';
             const link = item.querySelector('link')?.textContent || '';
             const descText = item.querySelector('description')?.textContent || '';
+            // HTML 태그 제거 및 100자 자르기
             const cleanDesc = descText.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
             
             container.innerHTML += `
@@ -623,10 +628,16 @@
             count++;
         });
     } catch (error) {
-        console.error("블로그 호출 에러:", error);
-        document.getElementById('naver-blog-list').innerHTML = '<p style="text-align:center; color:#999;">블로그 업데이트를 준비 중입니다.</p>';
+        console.error("블로그 불러오기 실패:", error);
+        const container = document.getElementById('naver-blog-list');
+        if (container) {
+            container.innerHTML = '<p style="text-align:center; color:#999;">최신 소식을 가져올 수 없습니다.</p>';
+        }
     }
-}    window.addEventListener('DOMContentLoaded', loadNaverBlog);
+}
+
+// 페이지 로드 시 블로그 연동 실행
+window.addEventListener('DOMContentLoaded', loadNaverBlog);
 </script>
      <!-- [팝업 1: 기존 배너] -->
 <div id="popup1" style="display: none; position: fixed; top: 70px; left: 20px; z-index: 9999; background: #fff; border: 2px solid #00205B; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); width: 340px; max-width: 90vw; max-height: 80vh; overflow: hidden; flex-direction: column;">
