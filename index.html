@@ -590,7 +590,7 @@
     }
 
   async function loadNaverBlog() {
-    const blogId = 'sdpainrehab';
+    const blogId =  'sdpainrehab';
     const rssUrl = `https://rss.blog.naver.com/${blogId}.xml`;
     // 기존 rss2json 대신 allorigins 우회 프록시를 사용합니다.
     const convertUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`;
