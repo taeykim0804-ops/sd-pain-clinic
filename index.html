@@ -589,30 +589,42 @@
         if (!isActive) item.classList.add('active');
     }
 
-    async function loadNaverBlog() {
-        const blogId ='sdpainrehab'; 
-        const rssUrl = `https://rss.blog.naver.com/${blogId}.xml`;
-        const convertUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-        try {
-            const response = await fetch(convertUrl);
-            const data = await response.json();
-            const container = document.getElementById('naver-blog-list');
-            if (data.status === 'ok') {
-                container.innerHTML = ''; 
-                data.items.slice(0, 3).forEach(item => {
-                    const cleanDesc = item.description.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
-                    container.innerHTML += `
-                        <a href="${item.link}" class="blog-post" target="_blank">
-                            <span class="category">Latest Column</span>
-                            <h3>${item.title}</h3>
-                            <p>${cleanDesc}</p>
-                        </a>`;
-                });
-            }
-        } catch (error) {
-            document.getElementById('naver-blog-list').innerHTML = '<p style="text-align:center;">블로그를 불러올 수 없습니다.</p>';
-        }
+  async function loadNaverBlog() {
+    const blogId = 'sdpainrehab';
+    const rssUrl = `https://rss.blog.naver.com/${blogId}.xml`;
+    // 기존 rss2json 대신 allorigins 우회 프록시를 사용합니다.
+    const convertUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`;
+    
+    try {
+        const response = await fetch(convertUrl);
+        const str = await response.text();
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(str, 'text/xml');
+        const items = xml.querySelectorAll('item');
+        const container = document.getElementById('naver-blog-list');
+        container.innerHTML = '';
+        
+        let count = 0;
+        items.forEach(item => {
+            if (count >= 3) return;
+            const title = item.querySelector('title')?.textContent || '';
+            const link = item.querySelector('link')?.textContent || '';
+            const desc = item.querySelector('description')?.textContent.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...' || '';
+            
+            container.innerHTML += `
+                <a href="${link}" class="blog-post" target="_blank">
+                    <span class="category">Latest Column</span>
+                    <h3>${title}</h3>
+                    <p>${desc}</p>
+                </a>
+            `;
+            count++;
+        });
+    } catch (error) {
+        console.error("블로그 호출 에러:", error);
+        document.getElementById('naver-blog-list').innerHTML = '<p style="text-align:center;">블로그를 불러올 수 없습니다.</p>';
     }
+}
     window.addEventListener('DOMContentLoaded', loadNaverBlog);
 </script>
 </body>
