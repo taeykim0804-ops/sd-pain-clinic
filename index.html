@@ -590,17 +590,10 @@
     }
 
   async function loadNaverBlog() {
-    const blogId =  'sdpainrehab';
-    const rssUrl = `https://rss.blog.naver.com/${blogId}.xml`;
-   async function loadNaverBlog() {
-    const blogId = 'sdpainrehab';
-    const rssUrl = `https://rss.blog.naver.com/${blogId}.xml`;
-    // CodeTabs 프록시를 사용하여 네이버 RSS 차단 우회
-    const proxyUrl = `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(rssUrl)}`;
-    
     try {
-        const response = await fetch(proxyUrl);
-        if (!response.ok) throw new Error("네트워크 응답이 정상이 아닙니다.");
+        // 내가 만든 자체 API 서버 호출
+        const response = await fetch('/api/naver-blog');
+        if (!response.ok) throw new Error("서버 응답 오류");
         
         const str = await response.text();
         const parser = new DOMParser();
@@ -608,7 +601,7 @@
         const items = xml.querySelectorAll('item');
         const container = document.getElementById('naver-blog-list');
         
-        if (items.length === 0) throw new Error("블로그 글을 찾을 수 없습니다.");
+        if (items.length === 0) throw new Error("글 없음");
         
         container.innerHTML = '';
         let count = 0;
@@ -618,7 +611,6 @@
             const title = item.querySelector('title')?.textContent || '';
             const link = item.querySelector('link')?.textContent || '';
             const descText = item.querySelector('description')?.textContent || '';
-            // HTML 태그 제거 및 100자로 자르기
             const cleanDesc = descText.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
             
             container.innerHTML += `
@@ -632,11 +624,29 @@
         });
     } catch (error) {
         console.error("블로그 호출 에러:", error);
-        document.getElementById('naver-blog-list').innerHTML = '<p style="text-align:center; color:#999;">블로그 서버 점검 중이거나 일시적으로 불러올 수 없습니다.</p>';
+        document.getElementById('naver-blog-list').innerHTML = '<p style="text-align:center; color:#999;">블로그 업데이트를 준비 중입니다.</p>';
     }
-}
-    window.addEventListener('DOMContentLoaded', loadNaverBlog);
+}    window.addEventListener('DOMContentLoaded', loadNaverBlog);
 </script>
+        <!-- [팝업 1: 기존 배너] -->
+<div id="popup1" style="position: fixed; top: 80px; left: 20px; z-index: 9999; background: #fff; border: 2px solid #00205B; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); width: 320px; overflow: hidden;">
+    <div style="padding: 10px;">
+        <img src="기존배너.png" alt="공지사항 1" style="width: 100%; height: auto; display: block; border-radius: 5px;">
+    </div>
+    <div style="background: #f1f1f1; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 13px;">
+        <button onclick="document.getElementById('popup1').style.display='none'" style="border: none; background: #00205B; color: #fff; padding: 4px 12px; border-radius: 3px; cursor: pointer; margin-left: auto;">닫기</button>
+    </div>
+</div>
+
+<!-- [팝업 2: 신규 배너 (옆으로 340px 이동해서 배치)] -->
+<div id="popup2" style="position: fixed; top: 80px; left: 360px; z-index: 9999; background: #fff; border: 2px solid #00205B; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); width: 320px; overflow: hidden;">
+    <div style="padding: 10px;">
+        <img src="배너2.png" alt="공지사항 2" style="width: 100%; height: auto; display: block; border-radius: 5px;">
+    </div>
+    <div style="background: #f1f1f1; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 13px;">
+        <button onclick="document.getElementById('popup2').style.display='none'" style="border: none; background: #00205B; color: #fff; padding: 4px 12px; border-radius: 3px; cursor: pointer; margin-left: auto;">닫기</button>
+    </div>
+</div>
 </body>
 <!-- [레이어 팝업 배너 모달] -->
 <div id="popupBanner" class="popup-overlay" style="display: none;">
@@ -877,5 +887,17 @@ document.addEventListener("DOMContentLoaded", function() {
     // 페이지 내의 모든 .reveal-up 요소를 자동으로 감지하여 실행
     document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
 });
+    // 모바일 화면에서는 두 번째 팝업을 아래로 배치
+if (window.innerWidth < 768) {
+    const p1 = document.getElementById('popup1');
+    const p2 = document.getElementById('popup2');
+    if (p1 && p2) {
+        p1.style.left = '5%';
+        p1.style.width = '90%';
+        p2.style.left = '5%';
+        p2.style.width = '90%';
+        p2.style.top = '360px'; // 모바일에서는 첫 번째 팝업 아래로 정렬
+    }
+}
 </script>
 </html>
