@@ -82,6 +82,37 @@
         /* [블로그] */
         .blog-list { display: flex; flex-direction: column; gap: 30px; }
         .blog-post { text-decoration: none; color: inherit; display: block; padding-bottom: 25px; border-bottom: 1px solid #eee; }
+        /* PC/모바일 반응형 팝업 스타일 */
+#popup1, #popup2 {
+    position: fixed;
+    z-index: 99999;
+    background: #fff;
+    border: 2px solid #00205B;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    overflow: hidden;
+    flex-direction: column;
+}
+
+/* PC 위치 지정 */
+#popup1 { top: 70px; left: 20px; width: 340px; max-height: 80vh; }
+#popup2 { top: 70px; left: 380px; width: 340px; max-height: 80vh; }
+
+/* 모바일 전용 위치 지정 (화면 너비 768px 이하) */
+@media (max-width: 768px) {
+    #popup1 {
+        top: 20px !important;
+        left: 5% !important;
+        width: 90% !important;
+        max-height: 42vh !important;
+    }
+    #popup2 {
+        top: 46vh !important;
+        left: 5% !important;
+        width: 90% !important;
+        max-height: 42vh !important;
+    }
+}
         .blog-post .category { font-size: 12px; color: var(--g); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block; }
         .blog-post h3 { font-size: 20px; color: var(--b); margin-bottom: 12px; font-weight: 700; line-height: 1.4; }
         .blog-post p { font-size: 14.5px; color: #666; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -589,9 +620,9 @@
         if (!isActive) item.classList.add('active');
     }
 
-  async function loadNaverBlog() {
+async function loadNaverBlog() {
     try {
-        // 백엔드 API 서버리스 함수 호출
+        // 자체 백엔드 API 호출
         const response = await fetch('/api/naver-blog');
         if (!response.ok) throw new Error("서버 응답 에러");
         
@@ -611,11 +642,10 @@
         let count = 0;
         
         items.forEach(item => {
-            if (count >= 3) return; // 최신글 3개만 표시
+            if (count >= 3) return; // 최신글 3개만 노출
             const title = item.querySelector('title')?.textContent || '';
             const link = item.querySelector('link')?.textContent || '';
             const descText = item.querySelector('description')?.textContent || '';
-            // HTML 태그 제거 및 100자 자르기
             const cleanDesc = descText.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
             
             container.innerHTML += `
@@ -636,11 +666,11 @@
     }
 }
 
-// 페이지 로드 시 블로그 연동 실행
+// 페이지 로드 시 블로그 실행
 window.addEventListener('DOMContentLoaded', loadNaverBlog);
 </script>
-     <!-- [팝업 1: 기존 배너] -->
-<div id="popup1" style="display: none; position: fixed; top: 70px; left: 20px; z-index: 9999; background: #fff; border: 2px solid #00205B; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); width: 340px; max-width: 90vw; max-height: 80vh; overflow: hidden; flex-direction: column;">
+  <!-- [팝업 1] -->
+<div id="popup1" style="display: none;">
     <div style="padding: 10px; overflow-y: auto; flex: 1;">
         <img src="배너.jpg" alt="공지사항 1" style="width: 100%; height: auto; display: block; border-radius: 5px;">
     </div>
@@ -648,12 +678,12 @@ window.addEventListener('DOMContentLoaded', loadNaverBlog);
         <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; color: #333; font-size: 12px; user-select: none;">
             <input type="checkbox" id="chk_popup1"> 오늘 하루 보지 않기
         </label>
-        <button onclick="closePopup('popup1', 'chk_popup1')" style="border: none; background: #00205B; color: #fff; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">닫기</button>
+        <button onclick="closePopup('popup1', 'chk_popup1')" style="border: none; background: #00205B; color: #fff; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">닫기</button>
     </div>
 </div>
 
-<!-- [팝업 2: 배너2.png] -->
-<div id="popup2" style="display: none; position: fixed; top: 70px; left: 380px; z-index: 9999; background: #fff; border: 2px solid #00205B; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); width: 340px; max-width: 90vw; max-height: 80vh; overflow: hidden; flex-direction: column;">
+<!-- [팝업 2] -->
+<div id="popup2" style="display: none;">
     <div style="padding: 10px; overflow-y: auto; flex: 1;">
         <img src="배너2.png" alt="공지사항 2" style="width: 100%; height: auto; display: block; border-radius: 5px;">
     </div>
@@ -661,7 +691,7 @@ window.addEventListener('DOMContentLoaded', loadNaverBlog);
         <label style="cursor: pointer; display: flex; align-items: center; gap: 5px; color: #333; font-size: 12px; user-select: none;">
             <input type="checkbox" id="chk_popup2"> 오늘 하루 보지 않기
         </label>
-        <button onclick="closePopup('popup2', 'chk_popup2')" style="border: none; background: #00205B; color: #fff; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">닫기</button>
+        <button onclick="closePopup('popup2', 'chk_popup2')" style="border: none; background: #00205B; color: #fff; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold;">닫기</button>
     </div>
 </div>
 </body>
@@ -954,5 +984,38 @@ function closePopup(popupId, chkId) {
 
 // 페이지 로드 시 팝업 실행
 window.addEventListener('DOMContentLoaded', initPopups);
+// 팝업 닫기 및 오늘 하루 보지 않기 처리 함수
+function closePopup(popupId, chkId) {
+    const chk = document.getElementById(chkId);
+    if (chk && chk.checked) {
+        const expireTime = new Date().getTime() + (24 * 60 * 60 * 1000);
+        localStorage.setItem('hide_' + popupId, expireTime);
+    }
+    const target = document.getElementById(popupId);
+    if (target) target.style.display = 'none';
+}
+
+// 팝업 실행 함수
+function initPopups() {
+    const now = new Date().getTime();
+    
+    const hideP1 = localStorage.getItem('hide_popup1');
+    if (!hideP1 || now > parseInt(hideP1)) {
+        const p1 = document.getElementById('popup1');
+        if (p1) p1.style.display = 'flex';
+    }
+    
+    const hideP2 = localStorage.getItem('hide_popup2');
+    if (!hideP2 || now > parseInt(hideP2)) {
+        const p2 = document.getElementById('popup2');
+        if (p2) p2.style.display = 'flex';
+    }
+}
+
+// 페이지 로드 시 블로그 연동 및 팝업 함께 실행
+window.addEventListener('DOMContentLoaded', function() {
+    loadNaverBlog();
+    initPopups();
+});
 </script>
 </html>
