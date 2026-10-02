@@ -9,7 +9,10 @@ const tag = (xml, name) => {
 };
 
 export default async function handler(req, res) {
-  // 환경변수가 없으면 기본값으로 'sdpainrehab' 사용
+  // CORS 허용 설정
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET');
+
   const id = process.env.NAVER_BLOG_ID || 'sdpainrehab';
 
   try {
