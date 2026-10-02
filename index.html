@@ -946,56 +946,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // 페이지 내의 모든 .reveal-up 요소를 자동으로 감지하여 실행
     document.querySelectorAll('.reveal-up').forEach(el => observer.observe(el));
 });
-    // 모바일 화면에서는 두 번째 팝업을 아래로 배치
-if (window.innerWidth < 768) {
-    const p1 = document.getElementById('popup1');
-    const p2 = document.getElementById('popup2');
-    if (p1 && p2) {
-        p1.style.left = '5%';
-        p1.style.width = '90%';
-        p2.style.left = '5%';
-        p2.style.width = '90%';
-        p2.style.top = '360px'; // 모바일에서는 첫 번째 팝업 아래로 정렬
-    }
-}
-// 팝업 노출 여부 확인 및 제어
-function initPopups() {
-    const now = new Date().getTime();
-
-    // 팝업 1 저장 기간 체크
-    const hideP1 = localStorage.getItem('hide_popup1');
-    if (!hideP1 || now > parseInt(hideP1)) {
-        document.getElementById('popup1').style.display = 'flex';
-    }
-
-    // 팝업 2 저장 기간 체크
-    const hideP2 = localStorage.getItem('hide_popup2');
-    if (!hideP2 || now > parseInt(hideP2)) {
-        document.getElementById('popup2').style.display = 'flex';
-    }
-
-    // 모바일(화면 폭 768px 미만) 위치 조정
-    if (window.innerWidth < 768) {
-        const p1 = document.getElementById('popup1');
-        const p2 = document.getElementById('popup2');
-        if (p1) { p1.style.left = '5%'; p1.style.top = '40px'; }
-        if (p2) { p2.style.left = '5%'; p2.style.top = '340px'; }
-    }
-}
-
-// 팝업 닫기 및 '오늘 하루 보지 않기' 처리
-function closePopup(popupId, chkId) {
-    const chk = document.getElementById(chkId);
-    if (chk && chk.checked) {
-        // 24시간(86,400,000 밀리초) 동안 표시 안 함 저장
-        const expireTime = new Date().getTime() + (24 * 60 * 60 * 1000);
-        localStorage.setItem('hide_' + popupId, expireTime);
-    }
-    document.getElementById(popupId).style.display = 'none';
-}
-
-// 페이지 로드 시 팝업 실행
-window.addEventListener('DOMContentLoaded', initPopups);
+   
 // 팝업 닫기 및 오늘 하루 보지 않기 처리 함수
 function closePopup(popupId, chkId) {
     const chk = document.getElementById(chkId);
