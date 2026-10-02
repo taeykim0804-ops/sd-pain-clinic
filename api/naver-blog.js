@@ -1,25 +1,35 @@
+// Vercel 서버리스 함수: /api/naver-blog
+// 환경변수 NAVER_BLOG_ID 에 네이버 블로그 아이디를 등록하세요.
+// 네이버 공식 RSS(https://rss.blog.naver.com/{아이디}.xml)를 서버에서 읽어 JSON으로 돌려줍니다.
+
+const decode = s => s
+  .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"')
+  .replace(/&#39;|&apos;/g, "'").replace(/&amp;/g, '&');
+
+const tag = (xml, name) => {
+  const m = xml.match(new RegExp(`<${name}>([\\s\\S]*?)</${name}>`));
+  return m ? m[1].replace(/^\s*<!\[CDATA\[|\]\]>\s*$/g, '').trim() : '';
+};
+
 export default async function handler(req, res) {
-    const rssUrl = 'https://rss.blog.naver.com/sdpainrehab.xml';
-    
-    try {
-        // User-Agent를 브라우저 값으로 설정하여 네이버의 서버 차단 우회
-        const response = await fetch(rssUrl, {
-            headers: {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-            }
-        });
+  const id = process.env.NAVER_BLOG_ID;
+  if (!id) return res.status(500).json({ items: [], error: 'NAVER_BLOG_ID not set' });
 
-        if (!response.ok) {
-            throw new Error(`네이버 응답 오류: ${response.status}`);
-        }
+  try {
+    const r = await fetch(`https://rss.blog.naver.com/${encodeURIComponent(id)}.xml`);
+    if (!r.ok) throw new Error(`RSS ${r.status}`);
+    const xml = await r.text();
 
-        const xmlText = await response.text();
-        
-        // 브라우저로 XML 데이터 반환
-        res.setHeader('Content-Type', 'text/xml; charset=utf-8');
-        res.status(200).send(xmlText);
-    } catch (error) {
-        console.error("API Error:", error);
-        res.status(500).json({ error: '블로그 연동 실패' });
-    }
+    const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, 5).map(m => ({
+      title: decode(tag(m[1], 'title')),
+      link: tag(m[1], 'link'),
+      description: decode(tag(m[1], 'description')).replace(/<[^>]*>/g, '').trim().slice(0, 120),
+      pubDate: tag(m[1], 'pubDate'),
+    }));
+
+    res.setHeader('Cache-Control', 's-maxage=1800, stale-while-revalidate=86400');
+    return res.status(200).json({ items });
+  } catch (e) {
+    return res.status(502).json({ items: [], error: 'fetch failed' });
+  }
 }
