@@ -1,23 +1,22 @@
 // Vercel 서버리스 함수: /api/naver-blog
+// 네이버 공식 RSS(https://rss.blog.naver.com/sdpainrehab.xml)를 읽어 JSON으로 돌려줍니다.
+// 환경변수 설정 없이 그대로 붙여넣어 사용하시면 됩니다.
+
+const BLOG_ID = 'sdpainrehab';
+
 const decode = s => s
   .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"')
   .replace(/&#39;|&apos;/g, "'").replace(/&amp;/g, '&');
 
 const tag = (xml, name) => {
-  const m = xml.match(new RegExp(`<${name}>([\\s\\S]*?)</${name}>`));
-  return m ? m[1].replace(/^\s*<!\[CDATA\[\vert{}\]\]>\s*$/g, '').trim() : '';
+  const m = xml.match(new RegExp('<' + name + '>([\\s\\S]*?)</' + name + '>'));
+  return m ? m[1].replace(/^\s*<!\[CDATA\[/, '').replace(/\]\]>\s*$/, '').trim() : '';
 };
 
 export default async function handler(req, res) {
-  // CORS 허용 설정
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET');
-
-  const id = process.env.NAVER_BLOG_ID || 'sdpainrehab';
-
   try {
-    const r = await fetch(`https://rss.blog.naver.com/${encodeURIComponent(id)}.xml`);
-    if (!r.ok) throw new Error(`RSS ${r.status}`);
+    const r = await fetch('https://rss.blog.naver.com/' + encodeURIComponent(BLOG_ID) + '.xml');
+    if (!r.ok) throw new Error('RSS ' + r.status);
     const xml = await r.text();
 
     const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, 5).map(m => ({
