@@ -84,7 +84,7 @@ section{padding:60px 20px;max-width:1200px;margin:0 auto}
 .sub-header-text::before{content:"•";color:var(--g);font-weight:700;margin-right:8px;font-size:18px}
 .sub-icon{font-size:12px;color:#aaa;transition:transform .3s}
 .sub-content{max-height:0;overflow:hidden;transition:max-height .3s ease-out,padding .3s,margin .3s;background:#fff;border-radius:12px;margin:0 25px}
-.sub-item.active .sub-content{max-height:800px;padding:20px;margin-bottom:15px;border:1px solid #eaeaea}
+.sub-item.active .sub-content{max-height:1000px;padding:20px;margin-bottom:15px;border:1px solid #eaeaea}
 .sub-item.active .sub-header-text{color:var(--b);font-weight:700}
 .sub-item.active .sub-icon{transform:rotate(180deg);color:var(--b)}
 .detail-img{width:100%;height:auto;max-height:350px;object-fit:contain;border-radius:8px;margin-bottom:15px;display:block}
@@ -119,23 +119,12 @@ section{padding:60px 20px;max-width:1200px;margin:0 auto}
 .nav-button.tmap{background:#EF3340}
 .map-note{font-size:12px;color:#888}
 
-/* 수술 후 재활치료 (강조형 대분류) */
-.cat-item.feature{border:2px solid var(--g);box-shadow:0 10px 25px rgba(198,146,20,.15)}
-.cat-item.feature .cat-header{background:linear-gradient(135deg,#001A4B,#00337C)}
-.cat-item.feature .cat-header:hover{background:linear-gradient(135deg,#00337C,#001A4B)}
-.cat-item.feature .cat-header h3{color:#fff}
-.cat-item.feature .cat-header .icon{color:#E8B93A}
-.cat-item.feature.active .cat-header{border-bottom:2px solid var(--g)}
-.feature-intro{padding:30px 25px 25px;text-align:center;background:var(--s);border-bottom:1px solid #e1d8c1}
-.feature-intro h4{font-family:'Noto Serif KR',serif;font-size:21px;color:var(--b);line-height:1.5;margin-bottom:14px}
-.feature-intro .fi-tag{font-size:16px;font-weight:700;color:var(--g);margin-bottom:6px}
-.feature-intro .fi-sub{font-size:15px;font-weight:700;color:var(--b);margin-bottom:14px}
-.feature-intro p.fi-body{font-size:14px;color:#555;line-height:1.8}
+/* 아코디언 내부 목록/소개글 */
+.sub-intro{padding:10px 25px 5px;font-size:14px;color:#555;line-height:1.8}
 .detail-list{list-style:none;margin-top:12px}
 .detail-list li{position:relative;padding-left:16px;margin-bottom:8px;font-size:14px;color:#555}
 .detail-list li::before{content:'';position:absolute;left:0;top:11px;width:8px;height:1px;background:var(--g)}
 .detail-list b{color:var(--b)}
-@media (max-width:768px){.feature-intro h4{font-size:18px}.feature-intro .fi-tag{font-size:15px}}
 
 footer{text-align:center;padding:50px 20px;background:#00153D;color:rgba(255,255,255,.5);font-size:13px;line-height:1.8}
 .footer-info{margin-bottom:15px}
@@ -316,41 +305,38 @@ footer{text-align:center;padding:50px 20px;background:#00153D;color:rgba(255,255
       </div></div>
     </div>
 
-    <div class="cat-item feature">
-      <div class="cat-header" tabindex="0" role="button" onclick="toggleMainAccordion(this)"><h3>수술 후 재활치료</h3><span class="icon">+</span></div>
-      <div class="cat-content">
-        <div class="feature-intro">
-          <h4>SD 수술 후 단계별 맞춤 재활 프로그램</h4>
-          <p class="fi-tag">크라이오 냉각 케어로 통증은 줄이고, 비용 부담은 낮추고!</p>
-          <p class="fi-sub">SD 무릎·어깨 첨단 재활 프로그램으로 건강했던 일상을 빠르게 되찾으세요.</p>
-          <p class="fi-body">수술 후 회복 기간을 어떻게 보내느냐가 관절 건강의 평생을 좌우합니다. 방치하면 굳어지는 관절과 약해지는 근육, SD의 체계적인 맞춤 케어로 일상의 활력을 채워보세요.</p>
+   <div class="cat-item">
+  <div class="cat-header" tabindex="0" role="button" onclick="toggleMainAccordion(this)"><h3>수술 후 재활치료</h3><span class="icon">+</span></div>
+  <div class="cat-content">
+    <p class="sub-intro">수술 후 회복 기간을 어떻게 보내느냐가 관절 건강을 좌우합니다. SD의 단계별 맞춤 재활 프로그램과 크라이오 냉각 케어로 통증은 줄이고 일상 복귀는 앞당겨 보세요.</p>
+    <div class="sub-accordion">
+      <div class="sub-item">
+        <div class="sub-header" tabindex="0" role="button" onclick="toggleSubAccordion(this)"><span class="sub-header-text">무릎 관절 재활 (인공관절 · 관절경 · 인대 수술 등)</span><span class="sub-icon">▼</span></div>
+        <div class="sub-content">
+          <img loading="lazy" src="무릎재활.png" alt="무릎 관절 재활" class="detail-img">
+          <p class="detail-text">정상적인 걸음걸이의 회복과 안정적인 가동 범위 확보, 허벅지 중심의 하체 근력 재건을 목표로 합니다.</p>
+          <ul class="detail-list">
+            <li><b>관절 가동성 회복:</b> 굳어진 무릎 관절의 유연성을 단계적으로 열어줍니다.</li>
+            <li><b>보행 및 밸런스 훈련:</b> 통증 없이 바르게 걷고 중심을 잡을 수 있도록 돕습니다.</li>
+            <li><b>대퇴사두근 강화:</b> 무릎을 지탱하는 허벅지 근력을 키워 관절 가동을 안정화합니다.</li>
+          </ul>
         </div>
-        <div class="sub-accordion">
-          <div class="sub-item">
-            <div class="sub-header" tabindex="0" role="button" onclick="toggleSubAccordion(this)"><span class="sub-header-text">01. 무릎 관절 재활 (인공관절 · 관절경 · 인대 수술 등)</span><span class="sub-icon">▼</span></div>
-            <div class="sub-content">
-              <p class="detail-text">정상적인 걸음걸이의 회복과 안정적인 가동 범위 확보, 허벅지 중심의 하체 근력 재건을 목표로 합니다.</p>
-              <ul class="detail-list">
-                <li><b>관절 가동성 회복:</b> 굳어진 무릎 관절의 유연성을 단계적으로 열어줍니다.</li>
-                <li><b>보행 및 밸런스 훈련:</b> 통증 없이 바르게 걷고 중심을 잡을 수 있도록 돕습니다.</li>
-                <li><b>대퇴사두근 강화:</b> 무릎을 지탱하는 허벅지 근력을 키워 관절 가동을 안정화합니다.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="sub-item">
-            <div class="sub-header" tabindex="0" role="button" onclick="toggleSubAccordion(this)"><span class="sub-header-text">02. 어깨 관절 재활 (회전근개 · 와순 파열 · 오십견 등)</span><span class="sub-icon">▼</span></div>
-            <div class="sub-content">
-              <p class="detail-text">수술 부위의 안전한 보호를 최우선으로 하며, 점진적으로 가동 범위를 넓히고 회전근개의 안정성을 회복합니다.</p>
-              <ul class="detail-list">
-                <li><b>체계적인 보호 및 안정:</b> 수술 초기 불필요한 자극을 줄여 봉합 부위를 보호합니다.</li>
-                <li><b>유착 방지 스트레칭:</b> 어깨가 굳지 않도록 부드럽게 관절 범위를 넓혀갑니다.</li>
-                <li><b>회전근개 및 심부근육 강화:</b> 어깨 관절을 감싸는 근육들을 자극해 일상 복귀를 앞당깁니다.</li>
-              </ul>
-            </div>
-          </div>
+      </div>
+      <div class="sub-item">
+        <div class="sub-header" tabindex="0" role="button" onclick="toggleSubAccordion(this)"><span class="sub-header-text">어깨 관절 재활 (회전근개 · 와순 파열 · 오십견 등)</span><span class="sub-icon">▼</span></div>
+        <div class="sub-content">
+          <img loading="lazy" src="어깨재활.png" alt="어깨 관절 재활" class="detail-img">
+          <p class="detail-text">수술 부위의 안전한 보호를 최우선으로 하며, 점진적으로 가동 범위를 넓히고 회전근개의 안정성을 회복합니다.</p>
+          <ul class="detail-list">
+            <li><b>체계적인 보호 및 안정:</b> 수술 초기 불필요한 자극을 줄여 봉합 부위를 보호합니다.</li>
+            <li><b>유착 방지 스트레칭:</b> 어깨가 굳지 않도록 부드럽게 관절 범위를 넓혀갑니다.</li>
+            <li><b>회전근개 및 심부근육 강화:</b> 어깨 관절을 감싸는 근육들을 자극해 일상 복귀를 앞당깁니다.</li>
+          </ul>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
   </div>
 </section>
@@ -501,21 +487,22 @@ async function loadNaverBlog(){
     if(!items.length){ box.innerHTML = '<p class="blog-empty">최신 소식을 준비 중입니다.</p>'; return; }
     box.textContent = '';
     items.forEach(it => {
-      if(!/^https:\/\//.test(it.link)) return;
+      const link = String(it.link || '').replace(/^http:\/\//, 'https://');
+      if(!/^https:\/\//.test(link)) return;
       const a = document.createElement('a');
-      a.className = 'blog-post'; a.href = it.link; a.target = '_blank'; a.rel = 'noopener';
+      a.className = 'blog-post'; a.href = link; a.target = '_blank'; a.rel = 'noopener';
       const cat = document.createElement('span'); cat.className = 'category'; cat.textContent = 'Latest Column';
       const h3 = document.createElement('h3'); h3.textContent = it.title;
       const p = document.createElement('p'); p.textContent = it.description;
       a.append(cat, h3, p);
       box.appendChild(a);
     });
+    if(!box.children.length) throw new Error('no valid links');
   }catch(e){
     console.error('블로그 불러오기 실패:', e);
     box.innerHTML = '<p class="blog-empty">최신 소식을 가져올 수 없습니다. 아래 링크에서 확인해 주세요.</p>';
   }
 }
-
 /* ===== 스크롤 등장 ===== */
 function initReveal(){
   const els = document.querySelectorAll('.reveal-text');
