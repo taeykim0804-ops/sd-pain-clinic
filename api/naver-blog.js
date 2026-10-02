@@ -12,11 +12,11 @@ const tag = (xml, name) => {
 };
 
 export default async function handler(req, res) {
-  const id = process.env.NAVER_BLOG_ID;
+  const id = process.env.sdpainrehab;
   if (!id) return res.status(500).json({ items: [], error: 'NAVER_BLOG_ID not set' });
 
   try {
-    const r = await fetch(`https://rss.blog.naver.com/${encodeURIComponent(id)}.xml`);
+    const r = await fetch(`https://rss.blog.naver.com/${sdpainrehab}.xml`);
     if (!r.ok) throw new Error(`RSS ${r.status}`);
     const xml = await r.text();
 
