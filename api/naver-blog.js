@@ -1,4 +1,4 @@
-const BLOG_ID = 'sdpainrehab';
+const BLOG_ID = 'sdrehabpain';
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36';
 const RSS_URL = 'https://rss.blog.naver.com/' + BLOG_ID + '.xml';
 
