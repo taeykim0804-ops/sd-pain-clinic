@@ -166,6 +166,150 @@ footer{text-align:center;padding:50px 20px;background:#00153D;color:rgba(255,255
   .greeting-quote{font-size:18px}.greeting-footer{font-size:14px}
 }
 </style>
+  /* ===== 비급여 진료비 안내 ===== */
+#noncovered{
+  scroll-margin-top:80px;
+}
+
+.noncovered-wrap{
+  max-width:1100px;
+  margin:0 auto;
+}
+
+.noncovered-desc{
+  text-align:center;
+  color:#666;
+  font-size:14px;
+  margin:-10px 0 30px;
+  line-height:1.7;
+}
+
+.fee-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  margin-bottom:25px;
+}
+
+.fee-tab-btn{
+  border:1px solid var(--b);
+  background:#fff;
+  color:var(--b);
+  padding:12px 18px;
+  border-radius:999px;
+  font-size:14px;
+  font-weight:700;
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.fee-tab-btn.active,
+.fee-tab-btn:hover{
+  background:var(--b);
+  color:#fff;
+}
+
+.fee-panel{
+  display:none;
+}
+
+.fee-panel.active{
+  display:block;
+}
+
+.fee-card{
+  background:#fff;
+  border:1px solid #e8e8e8;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 8px 24px rgba(0,0,0,.04);
+}
+
+.fee-card-head{
+  background:linear-gradient(135deg, var(--b), #0b377f);
+  color:#fff;
+  padding:18px 22px;
+}
+
+.fee-card-head h3{
+  font-size:20px;
+  margin:0 0 6px;
+}
+
+.fee-card-head p{
+  margin:0;
+  font-size:13px;
+  color:rgba(255,255,255,.85);
+}
+
+.fee-table-wrap{
+  overflow-x:auto;
+}
+
+.fee-table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:420px;
+  background:#fff;
+}
+
+.fee-table thead th{
+  background:#f7f9fc;
+  color:var(--b);
+  font-size:14px;
+  font-weight:700;
+  padding:14px 16px;
+  border-bottom:1px solid #e5e5e5;
+  text-align:left;
+}
+
+.fee-table tbody td{
+  padding:14px 16px;
+  border-bottom:1px solid #efefef;
+  font-size:14px;
+  color:#333;
+}
+
+.fee-table tbody tr:last-child td{
+  border-bottom:none;
+}
+
+.fee-table tbody td:last-child{
+  text-align:right;
+  font-weight:700;
+  color:var(--b);
+  white-space:nowrap;
+}
+
+.fee-note{
+  margin-top:18px;
+  padding:0 4px;
+  font-size:12.5px;
+  color:#777;
+  line-height:1.7;
+}
+
+@media (max-width:768px){
+  .fee-tab-btn{
+    font-size:13px;
+    padding:10px 14px;
+  }
+
+  .fee-card-head h3{
+    font-size:18px;
+  }
+
+  .fee-table thead th,
+  .fee-table tbody td{
+    padding:12px 12px;
+    font-size:13px;
+  }
+
+  .noncovered-desc{
+    font-size:13px;
+  }
+}
 </head>
 <body>
 
@@ -376,6 +520,206 @@ footer{text-align:center;padding:50px 20px;background:#00153D;color:rgba(255,255
   </div>
 </section>
 </main>
+<section id="noncovered">
+  <div class="title-wrap">
+    <h2>비급여 진료비 안내</h2>
+    <div class="bar"></div>
+  </div>
+
+  <div class="noncovered-wrap">
+    <p class="noncovered-desc">
+      서울에스디통증재활의학과의원 비급여 항목 및 비용 안내입니다.
+    </p>
+
+    <div class="fee-tabs">
+      <button class="fee-tab-btn active" type="button" onclick="switchFeeTab('fee-treatment', this)">비급여 치료</button>
+      <button class="fee-tab-btn" type="button" onclick="switchFeeTab('fee-injection', this)">비급여 주사</button>
+      <button class="fee-tab-btn" type="button" onclick="switchFeeTab('fee-iv', this)">수액 및 주사제</button>
+      <button class="fee-tab-btn" type="button" onclick="switchFeeTab('fee-doc', this)">제증명료</button>
+    </div>
+
+    <!-- 비급여 치료 -->
+    <div class="fee-panel active" id="fee-treatment">
+      <div class="fee-card">
+        <div class="fee-card-head">
+          <h3>비급여 치료</h3>
+          <p>시술 항목별 비용 안내</p>
+        </div>
+        <div class="fee-table-wrap">
+          <table class="fee-table">
+            <thead>
+              <tr>
+                <th>항목명</th>
+                <th>금액</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>신장분사치료</td>
+                <td>70,000원</td>
+              </tr>
+              <tr>
+                <td>간단신장분사치료</td>
+                <td>20,000원</td>
+              </tr>
+              <tr>
+                <td>체외충격파</td>
+                <td>80,000원</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 비급여 주사 -->
+    <div class="fee-panel" id="fee-injection">
+      <div class="fee-card">
+        <div class="fee-card-head">
+          <h3>비급여 주사</h3>
+          <p>주사 항목별 비용 안내</p>
+        </div>
+        <div class="fee-table-wrap">
+          <table class="fee-table">
+            <thead>
+              <tr>
+                <th>항목명</th>
+                <th>금액</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>히루니다제</td>
+                <td>100,000원</td>
+              </tr>
+              <tr>
+                <td>리포타손</td>
+                <td>50,000원</td>
+              </tr>
+              <tr>
+                <td>플라센텍스</td>
+                <td>50,000원</td>
+              </tr>
+              <tr>
+                <td>큐어젠</td>
+                <td>90,000원</td>
+              </tr>
+              <tr>
+                <td>히론트</td>
+                <td>20,000원</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 수액 및 주사제 -->
+    <div class="fee-panel" id="fee-iv">
+      <div class="fee-card">
+        <div class="fee-card-head">
+          <h3>수액 및 주사제</h3>
+          <p>수액/영양주사 관련 비용 안내</p>
+        </div>
+        <div class="fee-table-wrap">
+          <table class="fee-table">
+            <thead>
+              <tr>
+                <th>항목명</th>
+                <th>금액</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>닥터라민</td>
+                <td>30,000원</td>
+              </tr>
+              <tr>
+                <td>후라바솔</td>
+                <td>30,000원</td>
+              </tr>
+              <tr>
+                <td>아르기닌</td>
+                <td>30,000원</td>
+              </tr>
+              <tr>
+                <td>메리트씨</td>
+                <td>15,000원</td>
+              </tr>
+              <tr>
+                <td>푸르설타민</td>
+                <td>15,000원</td>
+              </tr>
+              <tr>
+                <td>진코발</td>
+                <td>15,000원</td>
+              </tr>
+              <tr>
+                <td>쎌레늄</td>
+                <td>50,000원</td>
+              </tr>
+              <tr>
+                <td>싸이원</td>
+                <td>100,000원</td>
+              </tr>
+              <tr>
+                <td>라이넥</td>
+                <td>30,000원</td>
+              </tr>
+              <tr>
+                <td>하이퍼테트</td>
+                <td>40,000원</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- 제증명료 -->
+    <div class="fee-panel" id="fee-doc">
+      <div class="fee-card">
+        <div class="fee-card-head">
+          <h3>제증명료</h3>
+          <p>증명서 발급 비용 안내</p>
+        </div>
+        <div class="fee-table-wrap">
+          <table class="fee-table">
+            <thead>
+              <tr>
+                <th>항목명</th>
+                <th>금액</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>진단서</td>
+                <td>10,000원</td>
+              </tr>
+              <tr>
+                <td>소견서</td>
+                <td>10,000원</td>
+              </tr>
+              <tr>
+                <td>통원확인서</td>
+                <td>1,000원</td>
+              </tr>
+              <tr>
+                <td>진료확인서</td>
+                <td>1,000원</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <p class="fee-note">
+      ※ 비급여 진료비는 병원 사정에 따라 변동될 수 있으며, 자세한 사항은 원내 접수처로 문의해 주세요.
+    </p>
+  </div>
+</section>
+  
 
 <footer>
   <div class="footer-info">
